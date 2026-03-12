@@ -1,4 +1,5 @@
 import React from 'react';
+import { AlexButton } from '@/components/ui/AlexButton';
 
 const services = [
   { icon: 'fa-cloud-rain',      title: 'Depression',       description: 'Compassionate, evidence-based care to help you rediscover joy and meaning in everyday life.' },
@@ -18,7 +19,7 @@ export function ServicesSection() {
       <div className="container mx-auto px-6 md:px-8 max-w-[1200px]">
         <div className="text-center max-w-[600px] mx-auto mb-10 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-cormorant font-semibold text-[var(--primary)] mb-4">Our Specialized Care</h2>
-          <p className="text-[var(--text-light)]">We offer a wide range of psychological services tailored to your unique needs, whether in-person or online.</p>
+          <p className="text-[var(--text-light)]">We offer a wide range of expert psychological services and clinical counseling in Lucknow, tailored to your unique needs whether in-person or online.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, idx) => (
@@ -28,6 +29,11 @@ export function ServicesSection() {
               <p className="text-[var(--text-light)]">{service.description}</p>
             </div>
           ))}
+        </div>
+        <div className="mt-16 flex justify-center">
+          <AlexButton href="#contact" size="md">
+            Book a Consultation
+          </AlexButton>
         </div>
       </div>
     </section>

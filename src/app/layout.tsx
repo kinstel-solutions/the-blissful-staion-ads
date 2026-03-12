@@ -8,8 +8,22 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-cormorant" });
 
 export const metadata: Metadata = {
-  title: "The Blissful Station | Expert Psychological Care in Lucknow",
-  description: "Professional therapy by a verified clinical psychologist. The Blissful Station offers evidence-based mental healthcare in Lucknow.",
+  title: "The Blissful Station | Trusted Therapist in Lucknow",
+  description: "Looking for a Psychologist in Lucknow? The Blissful Station provides expert, ethical clinical counseling in Lucknow for depression, anxiety, and more.",
+  keywords: ["Therapist in Lucknow", "Psychologist in Lucknow", "Clinical Counseling in Lucknow", "Mental Healthcare Lucknow", "The Blissful Station"],
+  openGraph: {
+    title: "The Blissful Station | Trusted Therapist in Lucknow",
+    description: "Expert, ethical clinical counseling in Lucknow. Dedicated to your mental wellbeing.",
+    url: "https://theblissfulstation.in",
+    siteName: "The Blissful Station",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Blissful Station | Trusted Therapist in Lucknow",
+    description: "Expert, ethical clinical counseling in Lucknow for depression, anxiety, and more.",
+  },
 };
 
 export default function RootLayout({
@@ -22,7 +36,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
       </head>
-      <body>
+      <body className={`${outfit.variable} ${cormorant.variable} antialiased`}>
         <Navbar />
         {children}
         <Footer />

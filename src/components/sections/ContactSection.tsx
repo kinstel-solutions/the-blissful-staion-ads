@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { AlexButton } from '@/components/ui/AlexButton';
 
 export function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", service: "", message: "" });
@@ -16,7 +17,7 @@ export function ContactSection() {
       <div className="bg-white rounded-[30px] md:rounded-[40px] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.05)] grid grid-cols-1 md:grid-cols-2">
         <div className="p-8 md:p-12 lg:p-20">
           <h2 className="text-3xl md:text-4xl font-cormorant font-semibold text-[var(--primary)] mb-4">Take Control of Your Wellbeing</h2>
-          <p className="text-[var(--text-light)] mb-8">We are here to listen and help you navigate life's challenges. Book your first session today and start your journey towards bliss.</p>
+          <p className="text-[var(--text-light)] mb-8">We are here to listen and help you navigate life's challenges. As a leading Psychologist and Therapist in Lucknow, we invite you to book your first session today and start your journey towards bliss.</p>
           <div className="mt-8 space-y-4 text-[var(--text-dark)]">
             <p><strong className="font-semibold"><i className="fas fa-map-marker-alt text-[var(--primary)] w-6"></i> Address:</strong> Plot No. 19a, Kh. No. 84, Chak Malhauri, Chinhat, Lucknow, Uttar Pradesh 226028</p>
             <p><strong className="font-semibold"><i className="fas fa-clock text-[var(--primary)] w-6"></i> Hours:</strong> 11:00 AM - 8:00 PM (Daily)</p>
@@ -42,7 +43,12 @@ export function ContactSection() {
               <label htmlFor="message" className="block mb-2 font-medium text-[var(--text-dark)]">Your Message (Optional)</label>
               <textarea id="message" rows={4} placeholder="How can we help you?" value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} className="w-full p-4 rounded-xl border border-gray-200 font-inherit text-base focus:border-[var(--primary)] focus:outline-none"></textarea>
             </div>
-            <button type="submit" className="w-full bg-[var(--primary)] text-white font-semibold py-4 px-7 rounded-full transition-all duration-400 hover:bg-[var(--primary-light)] hover:-translate-y-1 shadow-[0_4px_15px_rgba(33,77,62,0.2)] hover:shadow-[0_6px_20px_rgba(33,77,62,0.3)]">Schedule My Session</button>
+            
+            <div className="pt-4 flex justify-center md:justify-start">
+              <AlexButton type="submit" size="md" className="w-full md:w-fit min-w-[240px]">
+                Schedule My Session
+              </AlexButton>
+            </div>
           </form>
         </div>
       </div>

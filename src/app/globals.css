@@ -36,8 +36,77 @@
   }
 }
 
-/* Animations that are repeatedly used */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-20px); }
+}
+
+@keyframes shimmerBg {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+@keyframes simmer {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+.simmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary) 40%,
+    #7ee7adb5 50%,
+    var(--primary) 60%,
+    var(--primary) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: simmer 3s ease-in-out infinite;
+}
+
+.alex-button {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.alex-button:hover {
+  background-color: var(--secondary);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.cta-icon-circle {
+  background-color: white;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.alex-button:hover .cta-icon-circle {
+  background-color: var(--primary);
+}
+
+.alex-button .animate-arrow {
+  color: var(--primary);
+  transition: color 0.4s ease;
+}
+
+.alex-button:hover .animate-arrow {
+  color: var(--secondary);
+  animation: arrow-slide 0.4s ease-in-out forwards;
+}
+
+@keyframes arrow-slide {
+  0% { transform: translate(0, 0); opacity: 1; }
+  45% { transform: translate(120%, -120%); opacity: 1; }
+  46% { opacity: 0; }
+  54% { opacity: 0; transform: translate(-120%, 120%); }
+  55% { opacity: 1; }
+  100% { transform: translate(0, 0); opacity: 1; }
 }

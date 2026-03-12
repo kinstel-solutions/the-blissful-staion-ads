@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import { AlexButton } from '@/components/ui/AlexButton';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -24,7 +25,7 @@ export function Navbar() {
         >
             <img
               src="/assets/iconLogo.jpeg"
-              alt="The Blissful Station Logo"
+              alt="The Blissful Station - Psychological Clinic in Lucknow"
               className="w-[36px] h-[36px] md:w-[44px] md:h-[44px] rounded-full object-cover"
             />
             <span className="hidden sm:block">The Blissful Station</span>
@@ -36,10 +37,17 @@ export function Navbar() {
             <li><a href="#testimonials" className="text-decoration-none text-[var(--text-dark)] font-medium transition-all duration-400 hover:text-[var(--primary)]">Testimonials</a></li>
             <li><a href="#contact" className="text-decoration-none text-[var(--text-dark)] font-medium transition-all duration-400 hover:text-[var(--primary)]">Contact</a></li>
         </ul>
-        <a href="#contact" className="inline-block bg-[var(--primary)] text-white font-semibold py-2.5 px-5 md:py-3 md:px-7 text-sm md:text-base rounded-full transition-all duration-400 hover:bg-[var(--primary-light)] hover:-translate-y-1 shadow-[0_4px_15px_rgba(33,77,62,0.2)] hover:shadow-[0_6px_20px_rgba(33,77,62,0.3)]">
-          <span className="sm:hidden">Book Now</span>
-          <span className="hidden sm:inline">Book Consultation</span>
-        </a>
+        
+        <div className="md:hidden">
+          <AlexButton href="#contact" size="sm">
+            Book Now
+          </AlexButton>
+        </div>
+        <div className="hidden md:block">
+          <AlexButton href="#contact" size="md">
+            Book Consultation
+          </AlexButton>
+        </div>
     </nav>
   );
 }
