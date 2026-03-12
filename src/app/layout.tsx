@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: "The Blissful Station | Trusted Therapist in Lucknow",
   description: "Looking for a Psychologist in Lucknow? The Blissful Station provides expert, ethical clinical counseling in Lucknow for depression, anxiety, and more.",
   keywords: ["Therapist in Lucknow", "Psychologist in Lucknow", "Clinical Counseling in Lucknow", "Mental Healthcare Lucknow", "The Blissful Station"],
+  icons: {
+    icon: '/assets/iconLogo.jpeg',
+    apple: '/assets/iconLogo.jpeg',
+  },
   openGraph: {
     title: "The Blissful Station | Trusted Therapist in Lucknow",
     description: "Expert, ethical clinical counseling in Lucknow. Dedicated to your mental wellbeing.",
