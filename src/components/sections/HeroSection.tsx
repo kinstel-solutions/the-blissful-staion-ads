@@ -18,7 +18,7 @@ export function HeroSection() {
           </h1>
           
           <p className="text-lg md:text-xl text-[var(--text-light)] mb-4 md:mb-10 max-w-[540px] leading-relaxed">
-            At The Blissful Station, we provide expert, ethical care. If you are looking for a trusted Therapist in Lucknow, we offer evidence-based clinical counseling in a secure environment.
+            <span className="hidden md:inline">Experience professional, ethical care tailored to your unique mental health journey. </span>Lucknow's trusted therapist for expert, evidence-based clinical counseling and healing.
           </p>
           
           <div>
