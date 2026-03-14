@@ -12,11 +12,10 @@ export async function POST(req: Request) {
   try {
     const { name, phone, age, concern } = await req.json();
 
-    // Note: To use a custom 'from' email, you must verify your domain in Resend.
-    // If not verified, you can only send from onboarding@resend.dev to your own email.
+  
     const { data, error } = await resend.emails.send({
-      from: 'The Blissful Station <notifications@theblissfulstation.com>',
-      to: ['kinstelsolutions@gmail.com', 'contact@theblissfulstation.com'],
+      from: 'The Blissful Station Website <inquiry@theblissfulstation.com>',
+      to: ['kinstelsolutions@gmail.com', 'contact@theblissfulstation.in'],
       subject: `New Consultation Request: ${name}`,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 10px; overflow: hidden;">
