@@ -10,6 +10,7 @@ import { CheckCircle2, User, Phone as PhoneIcon, Calendar, HelpCircle, ChevronDo
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
   phone: z.string().regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit number"),
+  email: z.string().min(1, "Email is required").email("Enter a valid email address"),
   age: z.string().optional().refine((val) => !val || (parseInt(val) >= 1 && parseInt(val) <= 120), {
     message: "Enter a valid age (1-120)",
   }),
@@ -131,6 +132,19 @@ export function ContactForm() {
           className={`w-full py-3 px-4 rounded-xl border ${errors.phone ? 'border-red-400' : 'border-gray-200'} bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all text-[15px]`}
         />
         {errors.phone && <p className="text-red-500 text-[11px] mt-1 ml-1">{errors.phone.message}</p>}
+      </div>
+
+      <div className="form-group">
+        <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
+          <i className="fas fa-envelope text-[var(--primary)] text-[11px]"></i> Email Address *
+        </label>
+        <input 
+          {...register('email')}
+          type="email"
+          placeholder="e.g. rahul@example.com"
+          className={`w-full py-3 px-4 rounded-xl border ${errors.email ? 'border-red-400' : 'border-gray-200'} bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all text-[15px]`}
+        />
+        {errors.email && <p className="text-red-500 text-[11px] mt-1 ml-1">{errors.email.message}</p>}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
