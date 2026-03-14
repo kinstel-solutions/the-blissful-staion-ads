@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppWidget } from "@/components/WhatsAppWidget";
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-cormorant" });
@@ -90,6 +91,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <WhatsAppWidget />
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
       </body>
     </html>
   );
