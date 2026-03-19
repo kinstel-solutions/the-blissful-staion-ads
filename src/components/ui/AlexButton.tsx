@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 interface AlexButtonProps {
   href?: string;
@@ -58,9 +59,9 @@ export function AlexButton({
 
   if (href) {
     return (
-      <a href={href} className={baseClasses} onClick={onClick}>
+      <Link href={href} className={baseClasses} onClick={onClick}>
         {content}
-      </a>
+      </Link>
     );
   }
 
