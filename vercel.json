@@ -1,0 +1,26 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "theblissfulstation.in"
+        }
+      ],
+      "destination": "https://www.theblissfulstation.com/$1",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "theblissfulstation.com"
+        }
+      ],
+      "destination": "https://www.theblissfulstation.com/$1",
+      "permanent": true
+    }
+  ]
+}

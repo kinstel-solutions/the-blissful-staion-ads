@@ -1,28 +1,32 @@
-import React from 'react';
-import { AlexButton } from '@/components/ui/AlexButton';
+import React from "react";
+import { AlexButton } from "@/components/ui/AlexButton";
 
 const features = [
-  { 
-    number: '01',
-    title: 'Verified Clinical Experts', 
-    description: 'Care provided by certified professionals specialized in evidence-based clinical psychology.' 
+  {
+    number: "01",
+    title: "Verified Clinical Experts",
+    description:
+      "Care provided by certified professionals specialized in psychotherapy, counseling and psychological testing services.",
   },
-  { 
-    number: '02',
-    title: 'Safe & 100% Confidential', 
-    description: 'Your privacy is our core priority. We provide a secure sanctuary for your healing journey.' 
+  {
+    number: "02",
+    title: "Safe & 100% Confidential",
+    description:
+      "Your privacy is our core priority. We provide a secure sanctuary for your healing journey.",
   },
-  { 
-    number: '03',
-    title: 'Evidence-Based Results', 
-    description: 'We utilize proven therapeutic methodologies to ensure positive and lasting transformations.' 
+  {
+    number: "03",
+    title: "Evidence-Based Results",
+    description:
+      "We utilize scientifically proven and ethical therapeutic modalities.",
   },
-  { 
-    number: '04',
-    title: 'Unmatched Accessibility', 
-    description: 'Convenient scheduling for both in-person clinic visits and secure online consultations.' 
+  {
+    number: "04",
+    title: "Unmatched Accessibility",
+    description:
+      "Convenient scheduling for both in-person clinic visits and secure online consultations.",
   },
-]
+];
 
 export function WhyChooseUsSection() {
   return (
@@ -32,24 +36,31 @@ export function WhyChooseUsSection() {
 
       <div className="container mx-auto px-6 md:px-8 max-w-[1200px] relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          
           <div className="lg:col-span-4 lg:sticky lg:top-32">
-            <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-[0.2em] mb-4 block">The Difference</span>
+            <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-[0.2em] mb-4 block">
+              The Difference
+            </span>
             <h2 className="text-4xl md:text-5xl font-cormorant font-medium text-[var(--text-dark)] leading-[1.1] mb-8">
               Why Choose <br />
               The <span className="italic">Blissful</span> Station?
             </h2>
             <p className="text-[var(--text-light)] text-lg mb-10 leading-relaxed">
-              We combine clinical excellence with a compassionate, human-centric approach. If you are looking for the best clinical counseling in Lucknow, our station is dedicated to your well-being.
+              We combine clinical excellence with a compassionate, human-centric
+              approach. If you are looking for the best therapy and counseling
+              in Lucknow, our station is dedicated to your well-being.
             </p>
-            <AlexButton href="#contact" size="md">
+            <AlexButton
+              href="#contact"
+              size="md">
               Our Clinical Standards
             </AlexButton>
           </div>
 
           <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
             {features.map((feature, idx) => (
-              <div key={idx} className="group relative">
+              <div
+                key={idx}
+                className="group relative">
                 <div className="mb-6 flex items-baseline gap-4">
                   <span className="text-4xl md:text-5xl font-cormorant font-light text-[rgba(33,77,62,0.15)] group-hover:text-[rgba(33,77,62,0.3)] transition-colors duration-500">
                     {feature.number}
@@ -65,7 +76,6 @@ export function WhyChooseUsSection() {
               </div>
             ))}
           </div>
-
         </div>
       </div>
     </section>

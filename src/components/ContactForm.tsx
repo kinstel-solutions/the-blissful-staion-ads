@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { AlexButton } from '@/components/ui/AlexButton';
-import { CheckCircle2, User, Phone as PhoneIcon, Calendar, HelpCircle, ChevronDown } from 'lucide-react';
+import { CheckCircle2, User, Phone as PhoneIcon, Calendar, HelpCircle, ChevronDown, MessageSquare } from 'lucide-react';
 
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -15,6 +15,7 @@ const formSchema = z.object({
     message: "Enter a valid age (1-120)",
   }),
   concern: z.string().min(1, "Please select a concern"),
+  message: z.string().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -197,6 +198,18 @@ export function ContactForm() {
           </div>
           {errors.concern && <p className="text-red-500 text-[11px] mt-1 ml-1">{errors.concern.message}</p>}
         </div>
+      </div>
+
+      <div className="form-group">
+        <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
+          <MessageSquare size={13} className="text-[var(--primary)]" /> Describe your Concerns
+        </label>
+        <textarea 
+          {...register('message')}
+          placeholder="Briefly describe what you'd like to discuss (optional)"
+          rows={3}
+          className="w-full py-3 px-4 rounded-xl border border-gray-200 bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all text-[15px] resize-none"
+        />
       </div>
       
       {status === 'error' && (
