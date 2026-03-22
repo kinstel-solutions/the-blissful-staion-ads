@@ -124,44 +124,67 @@ export default function ExpertPsychologistPage() {
             ))}
           </div>
         </div>
+      </div>
 
-        {/* Gallery Section */}
-        <div className="mb-24">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-cormorant font-medium text-[var(--primary)] mb-4">
-              Our Clinical Setting
-            </h2>
-            <p className="text-[var(--text-light)] max-w-[700px] mx-auto leading-relaxed">
-              We provide a safe, ethical, and calm environment designed to help
-              you feel comfortable during your healing journey.
-            </p>
-          </div>
+      {/* Gallery Section - Full Bleed Horizontal Carousel */}
+      <div className="mb-24 w-full">
+        <div className="text-center mb-12 px-6">
+          <h2 className="text-3xl md:text-4xl font-cormorant font-medium text-[var(--primary)] mb-4">
+            Our Clinical Setting
+          </h2>
+          <p className="text-[var(--text-light)] max-w-[700px] mx-auto leading-relaxed">
+            We provide a safe, ethical, and calm environment designed to help
+            you feel comfortable during your healing journey.
+          </p>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="flex overflow-hidden pb-12 w-full group">
+          <div className="flex w-max animate-marquee hover:pause">
             {[
               { src: "/assets/BS-reception.jpg", alt: "Reception area" },
               { src: "/assets/BS-office.jpg", alt: "Clinical office space" },
-              { src: "/assets/therapy-room-wide.jpg", alt: "Main therapy room" },
-              { src: "/assets/therapy-room-close.jpg", alt: "Therapeutic seating" },
+              {
+                src: "/assets/therapy-room-wide.jpg",
+                alt: "Main therapy room",
+              },
+              {
+                src: "/assets/therapy-room-close.jpg",
+                alt: "Designed for peace & comfort",
+              },
+              { src: "/assets/BS-reception.jpg", alt: "Reception area" },
+              { src: "/assets/BS-office.jpg", alt: "Clinical office space" },
+              {
+                src: "/assets/therapy-room-wide.jpg",
+                alt: "Main therapy room",
+              },
+              {
+                src: "/assets/therapy-room-close.jpg",
+                alt: "Therapeutic seating",
+              },
             ].map((img, idx) => (
               <div
                 key={idx}
-                className="group relative overflow-hidden rounded-[30px] shadow-md border border-[var(--glass-border)] aspect-[16/10] bg-gray-100">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(33,77,62,0.5)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-8">
-                  <span className="text-white font-medium text-lg">
-                    {img.alt}
-                  </span>
+                className="shrink-0 w-[95vw] md:w-[35vw] lg:w-[35vw] px-2 md:px-4">
+                <div className="w-full h-full group/card relative overflow-hidden rounded-[30px] border border-[var(--glass-border)] shadow-xl aspect-[16/16] md:aspect-[21/14] bg-gray-100 cursor-default">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-full object-fill transition-transform duration-1000 group-hover/card:scale-105"
+                    draggable="false"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(33,77,62,0.9)] via-[rgba(33,77,62,0.2)] to-transparent opacity-80 md:opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 flex items-end p-8 md:p-14">
+                    <span className="text-white font-cormorant text-2xl md:text-3xl font-medium tracking-wide drop-shadow-md transform translate-y-4 group-hover/card:translate-y-0 transition-transform duration-500">
+                      {img.alt}
+                    </span>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
+      </div>
 
+      <div className="container mx-auto px-6 md:px-8 max-w-[1100px]">
         {/* Location & Accessibility */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-[var(--primary)] text-white p-10 rounded-[35px] shadow-lg relative overflow-hidden group">
