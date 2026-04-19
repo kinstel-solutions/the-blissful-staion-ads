@@ -26,8 +26,8 @@ export function HeroSection() {
               Experience professional, ethical care tailored to your unique
               mental health journey.{" "}
             </span>
-            Lucknow's trusted therapist for expert, scientific, evidence based
-            therapy and counseling.
+            Lucknow&apos;s trusted therapist for expert, scientific, evidence
+            based therapy and counseling.
           </p>
 
           <div>
