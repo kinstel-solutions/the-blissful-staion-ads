@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppWidget } from "@/components/WhatsAppWidget";
-import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleTagManager } from '@next/third-parties/google';
 import { CanonicalTag } from "@/components/CanonicalTag";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -93,7 +93,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <WhatsAppWidget />
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-N83PLXXG"} />
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { addToJourney } from "@/utils/analytics";
 
 export function ActiveSectionObserver() {
   useEffect(() => {
@@ -20,6 +21,9 @@ export function ActiveSectionObserver() {
               // Set hash to section ID silently but preserve query params
               window.history.replaceState(null, "", window.location.pathname + window.location.search + `#${id}`);
             }
+            
+            // Log this section in the lead journey
+            addToJourney(id);
           }
         });
       },

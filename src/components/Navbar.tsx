@@ -80,7 +80,7 @@ export function Navbar() {
         <div className="flex items-center gap-2 md:gap-4">
           <AlexButton
             href="tel:+919793743769"
-            onClick={() => trackGAEvent('phone_call')}
+            onClick={() => trackGAEvent('phone_call', { element_id: 'navbar_phone_click' })}
             size="sm"
             className="text-[14px] md:text-lg">
             97937 43769
@@ -153,7 +153,7 @@ export function Navbar() {
             </p>
             <AlexButton
               href="tel:+919793743769"
-              onClick={() => trackGAEvent('phone_call')}
+              onClick={() => trackGAEvent('phone_call', { element_id: 'navbar_phone_click' })}
               size="sm"
               className="shadow-lg text-base">
               97937 43769
