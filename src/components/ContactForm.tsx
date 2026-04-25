@@ -76,7 +76,7 @@ export function ContactForm() {
       });
 
       if (response.ok) {
-        trackGAEvent('form_submit', { 
+        trackGAEvent('generate_lead', { 
           element_id: 'main_contact_form',
           user_email: data.email,
           user_phone: data.phone 
