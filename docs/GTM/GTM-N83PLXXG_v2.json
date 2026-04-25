@@ -1,0 +1,625 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2026-04-25 10:44:52",
+    "containerVersion": {
+        "path": "accounts/6350683794/containers/249871259/versions/2",
+        "accountId": "6350683794",
+        "containerId": "249871259",
+        "containerVersionId": "2",
+        "name": "GAds & GA4 Migration - GTM Foundation",
+        "description": "Full migration from manual GA4 to GTM-led infrastructure. Added Conversion Linker, Google Ads conversion tags (WhatsApp, Phone, Form), and GA4 event tags. Verified custom event triggers match codebase refactor (whatsapp_click, phone_call, form_submit).",
+        "container": {
+            "path": "accounts/6350683794/containers/249871259",
+            "accountId": "6350683794",
+            "containerId": "249871259",
+            "name": "tbspl-website-ads",
+            "publicId": "GTM-N83PLXXG",
+            "usageContext": [
+                "WEB"
+            ],
+            "fingerprint": "1776602242673",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6350683794/containers/249871259/workspaces?apiLink=container",
+            "features": {
+                "supportUserPermissions": true,
+                "supportEnvironments": true,
+                "supportWorkspaces": true,
+                "supportGtagConfigs": false,
+                "supportBuiltInVariables": true,
+                "supportClients": false,
+                "supportFolders": true,
+                "supportTags": true,
+                "supportTemplates": true,
+                "supportTriggers": true,
+                "supportVariables": true,
+                "supportVersions": true,
+                "supportZones": true,
+                "supportTransformations": false
+            },
+            "tagIds": [
+                "GTM-N83PLXXG"
+            ]
+        },
+        "tag": [
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "tagId": "5",
+                "name": "GAds Conversion - Phone Call",
+                "type": "awct",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionId",
+                        "value": "18103657729"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionLabel",
+                        "value": "ysATCJj4haAcEIHKv7hD"
+                    }
+                ],
+                "fingerprint": "1776785433038",
+                "firingTriggerId": [
+                    "4"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "tagId": "10",
+                "name": "GA4 Event - Phone Call",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "placement"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - placement}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "element_id"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - element_id}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "phone_call"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "G-Y72BE55PB4"
+                    }
+                ],
+                "fingerprint": "1776785433039",
+                "firingTriggerId": [
+                    "4"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "tagId": "12",
+                "name": "GA4 Event - Whatsapp Click",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "placement"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - placement}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "whatsapp_click"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "G-Y72BE55PB4"
+                    }
+                ],
+                "fingerprint": "1776785433039",
+                "firingTriggerId": [
+                    "11"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "tagId": "13",
+                "name": "GAds Conversion - Whatsapp Click",
+                "type": "awct",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionId",
+                        "value": "18103657729"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionLabel",
+                        "value": "PpCxCJv4haAcEIHKv7hD"
+                    }
+                ],
+                "fingerprint": "1776785433039",
+                "firingTriggerId": [
+                    "11"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "tagId": "16",
+                "name": "GAds Conversion - Form Submit",
+                "type": "awct",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionId",
+                        "value": "18103657729"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "conversionLabel",
+                        "value": "Rmd1CJX4haAcEIHKv7hD"
+                    }
+                ],
+                "fingerprint": "1776785433039",
+                "firingTriggerId": [
+                    "15"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "tagId": "18",
+                "name": "Google Tag - GA4 Config",
+                "type": "googtag",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "tagId",
+                        "value": "G-Y72BE55PB4"
+                    }
+                ],
+                "fingerprint": "1776785433039",
+                "firingTriggerId": [
+                    "17"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "tagId": "20",
+                "name": "Conversion Linker",
+                "type": "gclidw",
+                "parameter": [
+                    {
+                        "type": "BOOLEAN",
+                        "key": "enableUrlPassthrough",
+                        "value": "true"
+                    }
+                ],
+                "fingerprint": "1776785433040",
+                "firingTriggerId": [
+                    "17"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "tagId": "21",
+                "name": "GA4 Event - Form Submit",
+                "type": "gaawe",
+                "parameter": [
+                    {
+                        "type": "LIST",
+                        "key": "eventSettingsTable",
+                        "list": [
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "placement"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - placement}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "journey_string"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - journey_string}}"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "MAP",
+                                "map": [
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameter",
+                                        "value": "time_to_convert"
+                                    },
+                                    {
+                                        "type": "TEMPLATE",
+                                        "key": "parameterValue",
+                                        "value": "{{DLV - time_to_convert}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "eventName",
+                        "value": "form_submit"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "measurementIdOverride",
+                        "value": "G-Y72BE55PB4"
+                    }
+                ],
+                "fingerprint": "1776785433040",
+                "firingTriggerId": [
+                    "15"
+                ],
+                "tagFiringOption": "ONCE_PER_EVENT",
+                "consentSettings": {
+                    "consentStatus": "NOT_SET"
+                }
+            }
+        ],
+        "trigger": [
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "triggerId": "4",
+                "name": "Custom Event - Phone Call",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "phone_call"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1776785433038"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "triggerId": "11",
+                "name": "Custom Event - Whatsapp Click",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "whatsapp_click"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1776785433039"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "triggerId": "15",
+                "name": "Custom Event - Form Submit",
+                "type": "CUSTOM_EVENT",
+                "customEventFilter": [
+                    {
+                        "type": "EQUALS",
+                        "parameter": [
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg0",
+                                "value": "{{_event}}"
+                            },
+                            {
+                                "type": "TEMPLATE",
+                                "key": "arg1",
+                                "value": "form_submit"
+                            }
+                        ]
+                    }
+                ],
+                "fingerprint": "1776785433039"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "triggerId": "17",
+                "name": "All Pages",
+                "type": "PAGEVIEW",
+                "fingerprint": "1776785433039"
+            }
+        ],
+        "variable": [
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "variableId": "3",
+                "name": "DLV - user_email",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "user_email"
+                    }
+                ],
+                "fingerprint": "1776785433038"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "variableId": "6",
+                "name": "DLV - user_phone",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "user_phone"
+                    }
+                ],
+                "fingerprint": "1776785433038"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "variableId": "7",
+                "name": "User Provided Data - Manual",
+                "type": "awec",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "mode",
+                        "value": "MANUAL"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "phone_number",
+                        "value": "{{DLV - user_phone}}"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "email",
+                        "value": "{{DLV - user_email}}"
+                    }
+                ],
+                "fingerprint": "1776785433039"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "variableId": "8",
+                "name": "DLV - placement",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "placement"
+                    }
+                ],
+                "fingerprint": "1776785433039"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "variableId": "9",
+                "name": "DLV - element_id",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "element_id"
+                    }
+                ],
+                "fingerprint": "1776785433039"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "variableId": "14",
+                "name": "DLV - journey_string",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "journey_string"
+                    }
+                ],
+                "fingerprint": "1776785433039"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "variableId": "19",
+                "name": "DLV - time_to_convert",
+                "type": "v",
+                "parameter": [
+                    {
+                        "type": "TEMPLATE",
+                        "key": "dataLayerVersion",
+                        "value": "2"
+                    },
+                    {
+                        "type": "TEMPLATE",
+                        "key": "name",
+                        "value": "time_to_convert"
+                    }
+                ],
+                "fingerprint": "1776785433039"
+            }
+        ],
+        "builtInVariable": [
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "type": "PAGE_URL",
+                "name": "Page URL"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "type": "PAGE_HOSTNAME",
+                "name": "Page Hostname"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "type": "PAGE_PATH",
+                "name": "Page Path"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "type": "REFERRER",
+                "name": "Referrer"
+            },
+            {
+                "accountId": "6350683794",
+                "containerId": "249871259",
+                "type": "EVENT",
+                "name": "Event"
+            }
+        ],
+        "fingerprint": "1776785867824",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6350683794/containers/249871259/versions/2?apiLink=version"
+    }
+}
