@@ -28,31 +28,33 @@ export async function POST(req: Request) {
           </div>
           <div style="padding: 30px;">
             <p style="font-size: 16px;">You have received a new consultation request from your landing page.</p>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <table style="width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 20px;">
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%;">Full Name:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">${name}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${name}</td>
               </tr>
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Email Address:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">${email}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${email}</td>
               </tr>
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Phone / WhatsApp:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">${phone}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${phone}</td>
               </tr>
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Age:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">${age || "Not provided"}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${age || "Not provided"}</td>
               </tr>
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Primary Concern:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">${concern}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${concern}</td>
               </tr>
               ${message ? `
               <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Additional Concerns:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">${message}</td>
+                <td colspan="2" style="padding: 10px 10px 0 10px; font-weight: bold; width: 100%;">Additional Concerns:</td>
+              </tr>
+              <tr>
+                <td colspan="2" style="padding: 0 10px 10px 10px; border-bottom: 1px solid #eee; word-break: break-word; white-space: pre-wrap;">${message}</td>
               </tr>
               ` : ''}
             </table>
@@ -103,7 +105,7 @@ export async function POST(req: Request) {
       console.error("Clinic Email Error:", clinicRes.error);
       return NextResponse.json(
         {
-          error: (clinicRes.error as any).message || "Failed to notify clinic",
+          error: (clinicRes.error as Error).message || "Failed to notify clinic",
         },
         { status: 500 },
       );

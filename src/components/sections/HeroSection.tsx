@@ -11,7 +11,7 @@ export function HeroSection() {
       <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] items-center gap-8 md:gap-16 text-center md:text-left">
         <div className="flex flex-col items-center md:items-start">
           <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1 rounded-full uppercase mb-2 font-outfit">
-            Therapy Starting at ₹799
+            Therapy Starting at ₹999
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] mb-4 md:mb-8 font-cormorant font-bold text-[var(--text-dark)] tracking-[-1.5px]">
