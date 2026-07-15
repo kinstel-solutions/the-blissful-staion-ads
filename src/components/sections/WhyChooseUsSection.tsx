@@ -30,12 +30,12 @@ const features = [
 
 export function WhyChooseUsSection() {
   return (
-    <section className="bg-white py-[100px] md:py-[140px] relative overflow-hidden">
+    <section className="bg-white py-[40px] md:py-[140px] relative overflow-hidden">
       {/* Decorative corner element */}
       <div className="absolute -bottom-20 -left-20 w-[40vw] h-[40vw] bg-[radial-gradient(circle,rgba(33,77,62,0.02)_0%,rgba(252,250,255,0)_70%)] -z-0"></div>
 
       <div className="container mx-auto px-6 md:px-8 max-w-[1200px] relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-32">
             <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-[0.2em] mb-4 block">
               The Difference
@@ -44,7 +44,7 @@ export function WhyChooseUsSection() {
               Why Choose <br />
               The <span className="italic">Blissful</span> Station?
             </h2>
-            <p className="text-[var(--text-light)] text-lg mb-10 leading-relaxed">
+            <p className="text-[var(--text-light)] text-lg mb-6 md:mb-10 leading-relaxed">
               We combine clinical excellence with a compassionate, human-centric
               approach. If you are looking for the best therapy and counseling
               in Lucknow, our station is dedicated to your well-being.
@@ -56,7 +56,7 @@ export function WhyChooseUsSection() {
             </AlexButton>
           </div>
 
-          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+          <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8 md:gap-y-16">
             {features.map((feature, idx) => (
               <div
                 key={idx}

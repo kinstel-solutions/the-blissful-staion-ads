@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { AlexButton } from "@/components/ui/AlexButton";
 import { CheckCircle2, Mail, Phone, MapPin, Globe } from "lucide-react";
 
@@ -20,16 +21,19 @@ export default function ExpertPsychologistPage() {
   ];
 
   return (
-    <main className="pt-24 md:pt-32 pb-20 bg-[var(--bg-color)] min-h-screen">
+    <main className="pt-16 md:pt-32 pb-10 md:pb-20 bg-[var(--bg-color)] min-h-screen">
       <div className="container mx-auto px-6 md:px-8 max-w-[1100px]">
         {/* Hero Section / Profile Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-10 md:mb-20">
           <div className="lg:col-span-5 relative">
             <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-2xl rotate-[-2deg] transition-transform hover:rotate-0 duration-500">
-              <img
-                src="/swatantra-1.jpg"
+              <Image
+                src="/new_Images/tbs_clinician.jpeg"
                 alt="Swatantra Kumar - Clinical Psychologist"
+                width={800}
+                height={1000}
                 className="w-full h-auto object-cover aspect-[4/5]"
+                priority
               />
             </div>
             {/* Decorative Elements */}
@@ -80,13 +84,13 @@ export default function ExpertPsychologistPage() {
         </div>
 
         {/* Philosophy Section */}
-        <div className="bg-white rounded-[40px] p-10 md:p-16 shadow-xl border border-[var(--glass-border)] mb-20 relative overflow-hidden">
+        <div className="bg-white rounded-[40px] p-6 md:p-16 shadow-xl border border-[var(--glass-border)] mb-10 md:mb-20 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--secondary)] opacity-30 rounded-full translate-x-1/2 -translate-y-1/2 -z-0"></div>
           <div className="relative z-10 text-center max-w-[800px] mx-auto">
             <span className="text-[var(--primary)] font-bold text-xs uppercase tracking-[0.2em] mb-4 block">
               Our Philosophy
             </span>
-            <h2 className="text-3xl md:text-4xl font-cormorant font-medium text-[var(--text-dark)] mb-8 italic">
+            <h2 className="text-3xl md:text-4xl font-cormorant font-medium text-[var(--text-dark)] mb-4 md:mb-8 italic">
               "For those who value therapy the way it is meant to be: Ethical,
               Focused, and Transformative"
             </h2>
@@ -99,7 +103,7 @@ export default function ExpertPsychologistPage() {
         </div>
 
         {/* Expertise Section */}
-        <div className="mb-20">
+        <div className="mb-10 md:mb-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-cormorant font-medium text-[var(--primary)] mb-4">
               Professional Expertise
@@ -127,8 +131,8 @@ export default function ExpertPsychologistPage() {
       </div>
 
       {/* Gallery Section - Full Bleed Horizontal Carousel */}
-      <div className="mb-24 w-full">
-        <div className="text-center mb-12 px-6">
+      <div className="mb-12 md:mb-24 w-full">
+        <div className="text-center mb-6 md:mb-12 px-6">
           <h2 className="text-3xl md:text-4xl font-cormorant font-medium text-[var(--primary)] mb-4">
             Our Clinical Setting
           </h2>
@@ -138,38 +142,51 @@ export default function ExpertPsychologistPage() {
           </p>
         </div>
 
-        <div className="flex overflow-hidden pb-12 w-full group">
+        <div className="flex overflow-hidden pb-6 md:pb-12 w-full group">
           <div className="flex w-max animate-marquee hover:pause">
             {[
-              { src: "/assets/BS-reception.jpg", alt: "Reception area" },
-              { src: "/assets/BS-office.jpg", alt: "Clinical office space" },
+              { src: "/new_Images/tbs_entrance.jpeg", alt: "Entrance" },
               {
-                src: "/assets/therapy-room-wide.jpg",
-                alt: "Main therapy room",
+                src: "/new_Images/tbs_reception-2.jpeg",
+                alt: "Reception Area",
               },
               {
-                src: "/assets/therapy-room-close.jpg",
-                alt: "Designed for peace & comfort",
+                src: "/new_Images/tbs_office-area.jpeg",
+                alt: "Clinical Office Space",
               },
-              { src: "/assets/BS-reception.jpg", alt: "Reception area" },
-              { src: "/assets/BS-office.jpg", alt: "Clinical office space" },
+              { src: "/assets/therapy-room-wide.jpg", alt: "Therapy Room" },
+              { src: "/new_Images/tbs_clinician.jpeg", alt: "Our Clinician" },
               {
-                src: "/assets/therapy-room-wide.jpg",
-                alt: "Main therapy room",
+                src: "/new_Images/tbs_clinician-certificate.jpeg",
+                alt: "Certification",
+              },
+              // Duplicate for continuous marquee effect
+              { src: "/new_Images/tbs_entrance.jpeg", alt: "Entrance" },
+              {
+                src: "/new_Images/tbs_reception-2.jpeg",
+                alt: "Reception Area",
               },
               {
-                src: "/assets/therapy-room-close.jpg",
-                alt: "Therapeutic seating",
+                src: "/new_Images/tbs_office-area.jpeg",
+                alt: "Clinical Office Space",
+              },
+              { src: "/new_Images/tbs_therapy-room.jpeg", alt: "Therapy Room" },
+              { src: "/new_Images/tbs_clinician.jpeg", alt: "Our Clinician" },
+              {
+                src: "/new_Images/tbs_clinician-certificate.jpeg",
+                alt: "Certification",
               },
             ].map((img, idx) => (
               <div
                 key={idx}
                 className="shrink-0 w-[95vw] md:w-[35vw] lg:w-[35vw] px-2 md:px-4">
                 <div className="w-full h-full group/card relative overflow-hidden rounded-[30px] border border-[var(--glass-border)] shadow-xl aspect-[16/16] md:aspect-[21/14] bg-gray-100 cursor-default">
-                  <img
+                  <Image
                     src={img.src}
                     alt={img.alt}
-                    className="w-full h-full object-fill transition-transform duration-1000 group-hover/card:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 95vw, 35vw"
+                    className="object-cover transition-transform duration-1000 group-hover/card:scale-105"
                     draggable="false"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(33,77,62,0.9)] via-[rgba(33,77,62,0.2)] to-transparent opacity-80 md:opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 flex items-end p-8 md:p-14">
@@ -186,13 +203,16 @@ export default function ExpertPsychologistPage() {
 
       <div className="container mx-auto px-6 md:px-8 max-w-[1100px]">
         {/* Location & Accessibility */}
-        <div className="flex justify-center mb-10">
+        <div className="flex flex-wrap justify-center gap-3 mb-10">
           <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.5px] px-6 py-2 rounded-full uppercase font-outfit">
-            Therapy Starting at ₹799
+            20% Off First Session
+          </div>
+          <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.5px] px-6 py-2 rounded-full uppercase font-outfit">
+            Student & Special Discounts
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-[var(--primary)] text-white p-10 rounded-[35px] shadow-lg relative overflow-hidden group">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+          <div className="bg-[var(--primary)] text-white p-6 md:p-10 rounded-[35px] shadow-lg relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:scale-110 transition-transform">
               <MapPin size={100} />
             </div>
@@ -210,7 +230,7 @@ export default function ExpertPsychologistPage() {
               Lucknow, UP 226010
             </p>
           </div>
-          <div className="bg-white text-[var(--text-dark)] p-10 rounded-[35px] shadow-lg border border-[var(--glass-border)] relative overflow-hidden group">
+          <div className="bg-white text-[var(--text-dark)] p-6 md:p-10 rounded-[35px] shadow-lg border border-[var(--glass-border)] relative overflow-hidden group">
             <div className="absolute top-0 right-0 p-8 opacity-10 text-[var(--primary)] group-hover:scale-110 transition-transform">
               <Globe size={100} />
             </div>
@@ -233,8 +253,6 @@ export default function ExpertPsychologistPage() {
             </p>
           </div>
         </div>
-
-
       </div>
     </main>
   );

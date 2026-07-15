@@ -5,6 +5,7 @@ import { StatsSection } from "@/components/sections/StatsSection";
 import { TestimonialsSection } from "@/components/sections/TestimonialsSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { ActiveSectionObserver } from "@/components/ActiveSectionObserver";
+import { AboutTherapist } from "@/components/sections/AboutTherapist";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <HeroSection />
       <TestimonialsSection />
       <ServicesSection />
+      <AboutTherapist />
       <WhyChooseUsSection />
       <StatsSection />
       <ContactSection />

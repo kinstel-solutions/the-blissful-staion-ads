@@ -67,14 +67,23 @@
 }
 
 .alex-button {
-  background-color: var(--primary);
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--primary) 40%,
+    #33856a 50%,
+    var(--primary) 60%,
+    var(--primary) 100%
+  );
+  background-size: 200% 100%;
   border: 1px solid var(--primary);
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: simmer 3s ease-in-out infinite;
 }
 
 .alex-button:hover {
-  background-color: var(--secondary);
+  background: var(--secondary);
   border-color: var(--primary);
   color: var(--primary);
 }

@@ -2,12 +2,13 @@
 
 import { ContactForm } from "@/components/ContactForm";
 import { trackGAEvent } from "@/utils/analytics";
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-[60px] md:py-[100px] container mx-auto px-6 md:px-8 max-w-[1200px]">
+      className="py-[30px] md:py-[100px] container mx-auto px-6 md:px-8 max-w-[1200px]">
       <div className="bg-white rounded-[30px] md:rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.05)] grid grid-cols-1 md:grid-cols-2 border border-[var(--glass-border)] relative">
         <div className="p-8 md:p-12 lg:p-20 flex flex-col justify-center">
           <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[11px] font-bold tracking-[1px] px-3 py-1 rounded-full uppercase mb-6 w-fit">
@@ -25,7 +26,7 @@ export function ContactSection() {
           <div className="space-y-6 text-[var(--text-dark)]">
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-full bg-[var(--secondary)] flex items-center justify-center shrink-0 mt-1">
-                <i className="fas fa-map-marker-alt text-[var(--primary)]"></i>
+                <MapPin className="text-[var(--primary)] w-5 h-5" />
               </div>
               <div>
                 <p className="font-semibold text-xs uppercase tracking-widest text-[var(--primary)] opacity-60 mb-1">
@@ -39,7 +40,7 @@ export function ContactSection() {
 
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-full bg-[var(--secondary)] flex items-center justify-center shrink-0 mt-1">
-                <i className="fas fa-phone text-[var(--primary)]"></i>
+                <Phone className="text-[var(--primary)] w-5 h-5" />
               </div>
               <div>
                 <p className="font-semibold text-xs uppercase tracking-widest text-[var(--primary)] opacity-60 mb-1">
@@ -56,7 +57,7 @@ export function ContactSection() {
 
             <div className="flex items-start gap-4">
               <div className="w-10 h-10 rounded-full bg-[var(--secondary)] flex items-center justify-center shrink-0 mt-1">
-                <i className="fas fa-envelope text-[var(--primary)]"></i>
+                <Mail className="text-[var(--primary)] w-5 h-5" />
               </div>
               <div>
                 <p className="font-semibold text-xs uppercase tracking-widest text-[var(--primary)] opacity-60 mb-1">

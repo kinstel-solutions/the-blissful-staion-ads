@@ -77,9 +77,9 @@ export function TestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" className="bg-white py-[60px] md:py-[100px] overflow-hidden">
+    <section id="testimonials" className="bg-white py-[30px] md:py-[100px] overflow-hidden">
       {/* Header */}
-      <div className="text-center max-w-[600px] mx-auto mb-10 md:mb-16 px-6 md:px-8">
+      <div className="text-center max-w-[600px] mx-auto mb-6 md:mb-16 px-6 md:px-8">
         <h2 className="text-3xl md:text-4xl font-cormorant font-semibold text-[var(--primary)] mb-3 md:mb-4">
           What Our Clients Say
         </h2>

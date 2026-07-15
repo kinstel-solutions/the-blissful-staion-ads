@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AlexButton } from "@/components/ui/AlexButton";
 import { Menu, X } from "lucide-react";
 import { trackGAEvent } from "@/utils/analytics";
+import Image from "next/image";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,15 +40,21 @@ export function Navbar() {
             closeMenu();
           }}
           className="text-[1.3rem] md:text-[1.6rem] font-cormorant font-bold text-[var(--primary)] flex items-center gap-2 md:gap-3 no-underline cursor-pointer">
-          <img
+          <Image
             src="/assets/logo.webp"
             alt="The Blissful Station"
-            className="md:hidden w-[50px] h-[50px] object-contain"
+            width={50}
+            height={50}
+            className="md:hidden object-contain"
+            priority
           />
-          <img
+          <Image
             src="/assets/iconLogo.jpeg"
             alt="The Blissful Station"
-            className="hidden md:block w-[44px] h-[44px] rounded-full object-cover"
+            width={44}
+            height={44}
+            className="hidden md:block rounded-full object-cover"
+            priority
           />
           <span className="hidden md:block">The Blissful Station</span>
         </Link>
@@ -102,10 +109,12 @@ export function Navbar() {
         <div className="flex flex-col h-full p-8">
           <div className="flex justify-between items-center mb-10">
             <div className="flex items-center gap-3">
-              <img
+              <Image
                 src="/assets/logo.webp"
                 alt="Logo"
-                className="w-10 h-10 object-contain"
+                width={40}
+                height={40}
+                className="object-contain"
               />
               <span className="text-lg font-cormorant font-bold text-[var(--primary)]">
                 The Blissful Station
