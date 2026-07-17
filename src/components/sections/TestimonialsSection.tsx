@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 
 const testimonials = [
   { text: '"Very good experience. I think this is the first place in Lucknow where I found genuinely ethical, professional, and compassionate therapy. Highly recommended."', name: 'Pooja Singh' },
@@ -38,44 +36,6 @@ function ReviewCard({ t }: { t: typeof testimonials[0] }) {
 }
 
 export function TestimonialsSection() {
-  const mobileRef = useRef<HTMLDivElement>(null);
-  const isTouching = useRef(false);
-  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    const el = mobileRef.current;
-    if (!el) return;
-
-    const step = 0.5; // px per tick
-
-    const interval = setInterval(() => {
-      if (!isTouching.current && el) {
-        el.scrollLeft += step;
-        // Seamless loop: reset at halfway point
-        if (el.scrollLeft >= el.scrollWidth / 2) {
-          el.scrollLeft = 0;
-        }
-      }
-    }, 16); // ~60fps
-
-    return () => {
-      clearInterval(interval);
-      if (resumeTimer.current) clearTimeout(resumeTimer.current);
-    };
-  }, []);
-
-  const handleTouchStart = () => {
-    isTouching.current = true;
-    if (resumeTimer.current) clearTimeout(resumeTimer.current);
-  };
-
-  const handleTouchEnd = () => {
-    // Resume auto-scroll after 2s of inactivity
-    resumeTimer.current = setTimeout(() => {
-      isTouching.current = false;
-    }, 2000);
-  };
-
   return (
     <section id="testimonials" className="bg-white py-[30px] md:py-[100px] overflow-hidden">
       {/* Header */}
@@ -93,23 +53,18 @@ export function TestimonialsSection() {
         </div>
       </div>
 
-      {/* ── MOBILE: JS auto-scroll + manual swipe ─────────────────── */}
+      {/* ── MOBILE: CSS marquee ─────────────────── */}
       <div
-        ref={mobileRef}
-        className="md:hidden flex gap-5 px-6 overflow-x-auto pb-3"
-        style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
+        className="md:hidden flex gap-5 w-max animate-marquee-element"
+        style={{ animation: 'marquee 30s linear infinite' }}
       >
         {doubled.map((t, idx) => <ReviewCard key={idx} t={t} />)}
       </div>
 
       {/* ── DESKTOP: CSS marquee ───────────────────────────────────── */}
       <div
-        className="hidden md:flex gap-6 w-max"
-        style={{ animation: 'marquee 40s linear infinite' }}
-        onMouseEnter={e => (e.currentTarget.style.animationPlayState = 'paused')}
-        onMouseLeave={e => (e.currentTarget.style.animationPlayState = 'running')}
+        className="hidden md:flex gap-6 w-max animate-marquee-element"
+        style={{ animation: 'marquee 45s linear infinite' }}
       >
         {doubled.map((t, idx) => <ReviewCard key={idx} t={t} />)}
       </div>
@@ -119,7 +74,10 @@ export function TestimonialsSection() {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        .md\\:hidden::-webkit-scrollbar { display: none; }
+        .animate-marquee-element:hover,
+        .animate-marquee-element:active {
+          animation-play-state: paused;
+        }
       `}</style>
     </section>
   );

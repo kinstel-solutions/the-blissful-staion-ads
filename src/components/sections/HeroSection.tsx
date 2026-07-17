@@ -148,23 +148,9 @@ export function HeroSection() {
                   src: "/new_Images/tbs_clinician-certificate.jpeg",
                   alt: "Certification",
                 },
-                { src: "/new_Images/tbs_entrance.jpeg", alt: "Entrance" },
-                {
-                  src: "/new_Images/tbs_reception-2.jpeg",
-                  alt: "Reception Area",
-                },
-                {
-                  src: "/new_Images/tbs_office-area.jpeg",
-                  alt: "Clinical Office Space",
-                },
                 {
                   src: "/assets/therapy-room-wide.jpg",
-                  alt: "Therapy Room",
-                },
-                { src: "/new_Images/tbs_clinician.jpeg", alt: "Our Clinician" },
-                {
-                  src: "/new_Images/tbs_clinician-certificate.jpeg",
-                  alt: "Certification",
+                  alt: "Therapy Room Wide",
                 },
               ].map((img, idx) => (
                 <div
