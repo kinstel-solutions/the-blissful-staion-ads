@@ -160,10 +160,10 @@ export function HeroSection() {
                     src={img.src}
                     alt={img.alt}
                     fill
-                    sizes="(max-width: 768px) 85vw, 600px"
+                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 500px, 600px"
                     className="object-cover"
                     draggable="false"
-                    priority={idx < 2}
+                    priority={idx === 0}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(33,77,62,0.9)] via-transparent to-transparent opacity-80 md:opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 flex items-end p-6">
                     <span className="text-white font-cormorant text-2xl font-medium tracking-wide drop-shadow-md">

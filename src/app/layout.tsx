@@ -5,7 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 import { FloatingBookingWidget } from "@/components/FloatingBookingWidget";
-import { GoogleTagManager } from '@next/third-parties/google';
+import Script from "next/script";
 import { CanonicalTag } from "@/components/CanonicalTag";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -94,7 +94,19 @@ export default function RootLayout({
         <Footer />
         <WhatsAppWidget />
         <FloatingBookingWidget />
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-N83PLXXG"} />
+        <Script
+          id="gtm-script"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID || "GTM-N83PLXXG"}');
+            `,
+          }}
+        />
       </body>
     </html>
   );
