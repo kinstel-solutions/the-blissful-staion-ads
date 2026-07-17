@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AlexButton } from "@/components/ui/AlexButton";
 import {
   CloudRain,
@@ -128,6 +128,35 @@ export function ServicesSection() {
     }));
   };
 
+  useEffect(() => {
+    const handleExpandService = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      const serviceId = customEvent.detail?.serviceId;
+      setIsExpanded(true);
+      if (serviceId) {
+        const idx = services.findIndex(
+          (s) =>
+            s.title.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-") ===
+            serviceId
+        );
+        if (idx !== -1) {
+          setExpandedCards((prev) => ({ ...prev, [idx]: true }));
+          // Wait a short moment for DOM update, then scroll the element into view
+          setTimeout(() => {
+            const el = document.getElementById(serviceId);
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }, 100);
+        }
+      }
+    };
+    window.addEventListener("expand-service", handleExpandService);
+    return () => {
+      window.removeEventListener("expand-service", handleExpandService);
+    };
+  }, []);
+
   return (
     <section
       id="services"
@@ -144,37 +173,41 @@ export function ServicesSection() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
-          {services.map((service, idx) => (
-            <div
-              key={idx}
-              className={`bg-white p-4 rounded-[22px] transition-all duration-300 border border-[rgba(33,77,62,0.05)] shadow-[0_4px_12px_rgba(33,77,62,0.01)] hover:border-[var(--accent)] hover:shadow-[0_8px_30px_rgba(33,77,62,0.06)] hover:-translate-y-1 group flex flex-col justify-between ${
-                !isExpanded && idx >= 4 ? "hidden md:flex" : "flex"
-              }`}>
-              <div>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#F4F9F5] flex items-center justify-center text-[var(--primary)] transition-transform duration-300 group-hover:scale-105">
-                    <service.icon className="w-6 h-6" />
+          {services.map((service, idx) => {
+            const serviceId = service.title.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-");
+            return (
+              <div
+                key={idx}
+                id={serviceId}
+                className={`bg-white p-4 rounded-[22px] transition-all duration-300 border border-[rgba(33,77,62,0.05)] shadow-[0_4px_12px_rgba(33,77,62,0.01)] hover:border-[var(--accent)] hover:shadow-[0_8px_30px_rgba(33,77,62,0.06)] hover:-translate-y-1 group flex flex-col justify-between scroll-mt-28 ${
+                  !isExpanded && idx >= 4 ? "hidden md:flex" : "flex"
+                }`}>
+                <div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-[#F4F9F5] flex items-center justify-center text-[var(--primary)] transition-transform duration-300 group-hover:scale-105">
+                      <service.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-cormorant font-bold text-xl md:text-2xl text-[var(--primary)] leading-tight">
+                      {service.title}
+                    </h3>
                   </div>
-                  <h3 className="font-cormorant font-bold text-xl md:text-2xl text-[var(--primary)] leading-tight">
-                    {service.title}
-                  </h3>
+                  <div className={`mt-4 pt-4 border-t border-[#F4F9F5] text-[var(--text-light)] text-sm leading-relaxed md:block ${expandedCards[idx] ? "block" : "hidden"}`}>
+                    {service.description}
+                  </div>
                 </div>
-                <div className={`mt-4 pt-4 border-t border-[#F4F9F5] text-[var(--text-light)] text-sm leading-relaxed md:block ${expandedCards[idx] ? "block" : "hidden"}`}>
-                  {service.description}
-                </div>
+                <button
+                  onClick={() => toggleCard(idx)}
+                  className="mt-4 self-start text-[var(--primary)] text-[10px] md:text-xs font-medium uppercase tracking-wider hover:text-[var(--accent)] transition-colors flex md:hidden items-center gap-1 cursor-pointer">
+                  <span>{expandedCards[idx] ? "Show less" : "Show more"}</span>
+                  {expandedCards[idx] ? (
+                    <ChevronUp className="w-4 h-4" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4" />
+                  )}
+                </button>
               </div>
-              <button
-                onClick={() => toggleCard(idx)}
-                className="mt-4 self-start text-[var(--primary)] text-[10px] md:text-xs font-medium uppercase tracking-wider hover:text-[var(--accent)] transition-colors flex md:hidden items-center gap-1 cursor-pointer">
-                <span>{expandedCards[idx] ? "Show less" : "Show more"}</span>
-                {expandedCards[idx] ? (
-                  <ChevronUp className="w-4 h-4" />
-                ) : (
-                  <ChevronDown className="w-4 h-4" />
-                )}
-              </button>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-8 flex justify-center md:hidden">
@@ -187,9 +220,13 @@ export function ServicesSection() {
 
         <div className="mt-6 md:mt-16 flex justify-center">
           <AlexButton
-            href="#contact"
+            href="#booking-form"
+            onClick={(e) => {
+              e.preventDefault();
+              window.dispatchEvent(new CustomEvent("focus-booking-form"));
+            }}
             size="md">
-            Book a Consultation
+            Schedule My Appointment
           </AlexButton>
         </div>
       </div>

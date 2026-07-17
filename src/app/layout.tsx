@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppWidget } from "@/components/WhatsAppWidget";
+import { FloatingBookingWidget } from "@/components/FloatingBookingWidget";
 import { GoogleTagManager } from '@next/third-parties/google';
 import { CanonicalTag } from "@/components/CanonicalTag";
 
@@ -92,6 +93,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <WhatsAppWidget />
+        <FloatingBookingWidget />
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || "GTM-N83PLXXG"} />
       </body>
     </html>

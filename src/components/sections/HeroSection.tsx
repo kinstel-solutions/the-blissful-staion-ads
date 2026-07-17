@@ -10,6 +10,11 @@ export function HeroSection() {
   const autoScrollTimer = useRef<NodeJS.Timeout | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const handleServiceClick = (e: React.MouseEvent, serviceId: string) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent("expand-service", { detail: { serviceId } }));
+  };
+
   const startTimer = () => {
     if (autoScrollTimer.current) clearInterval(autoScrollTimer.current);
     autoScrollTimer.current = setInterval(() => {
@@ -63,33 +68,53 @@ export function HeroSection() {
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap justify-center gap-2.5 mb-4">
             <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
+              RCI Registered Clinical Psychologist
+            </div>
+            <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
               20% Off First Session
             </div>
             <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
-              Student & Special Group Discounts
+              Student & Special Discounts
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[800px]">
-            Expert Clinical Psychologist <br className="hidden lg:block" />
-            <span className="simmer-text italic font-bold">in Lucknow</span>
+          <h1 className="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[900px]">
+            Trusted Therapist & Clinical <br className="hidden lg:block" />
+            Psychologist <span className="simmer-text italic font-bold">in Lucknow</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-[var(--text-light)] mb-8 max-w-[600px] leading-relaxed">
+          <p className="text-lg md:text-xl text-[var(--text-light)] mb-8 max-w-[700px] leading-relaxed">
             <span className="hidden md:inline">
-              Experience professional, ethical care tailored to your unique
-              mental health journey or your loved one&apos;s.{" "}
+              Lucknow&apos;s trusted therapist and clinical psychologist providing scientific, evidence-based care tailored to your unique mental health journey.{" "}
             </span>
-            Lucknow&apos;s top therapist for scientific, evidence based therapy
-            for Anxiety, Depression, ADHD, Child therapy, CBT & more
+            Top psychologist near me for scientific, evidence-based therapy for{" "}
+            <a href="#services" onClick={(e) => handleServiceClick(e, "anxiety")} className="underline hover:text-[var(--primary)] transition-colors font-medium">Anxiety</a>,{" "}
+            <a href="#services" onClick={(e) => handleServiceClick(e, "depression")} className="underline hover:text-[var(--primary)] transition-colors font-medium">Depression</a>,{" "}
+            <a href="#services" onClick={(e) => handleServiceClick(e, "adhd-asd")} className="underline hover:text-[var(--primary)] transition-colors font-medium">ADHD</a>,{" "}
+            <a href="#services" onClick={(e) => handleServiceClick(e, "child-therapy")} className="underline hover:text-[var(--primary)] transition-colors font-medium">Child therapy</a>,{" "}
+            <a href="#services" onClick={(e) => handleServiceClick(e, "cbt")} className="underline hover:text-[var(--primary)] transition-colors font-medium">CBT</a> & more.
           </p>
 
-          <div>
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <AlexButton
-              href="#contact"
+              href="#booking-form"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent("focus-booking-form"));
+              }}
               size="md"
               className="shadow-lg hover:shadow-xl">
-              Consult Now
+              Schedule My Appointment
+            </AlexButton>
+            <AlexButton
+              href="#booking-form"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent("priority-booking-click"));
+              }}
+              size="md"
+              className="alex-button-secondary shadow-lg hover:shadow-xl">
+              Priority Booking
             </AlexButton>
           </div>
         </div>

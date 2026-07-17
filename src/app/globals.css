@@ -101,6 +101,34 @@
   background-color: var(--primary);
 }
 
+.alex-button-secondary {
+  background: white !important;
+  border: 2px solid var(--primary) !important;
+  color: var(--primary) !important;
+  animation: none !important;
+}
+
+.alex-button-secondary:hover {
+  background: var(--primary) !important;
+  color: white !important;
+}
+
+.alex-button-secondary .cta-icon-circle {
+  background-color: var(--primary) !important;
+}
+
+.alex-button-secondary:hover .cta-icon-circle {
+  background-color: white !important;
+}
+
+.alex-button-secondary .animate-arrow {
+  color: white !important;
+}
+
+.alex-button-secondary:hover .animate-arrow {
+  color: var(--primary) !important;
+}
+
 .alex-button .animate-arrow {
   color: var(--primary);
   transition: color 0.4s ease;

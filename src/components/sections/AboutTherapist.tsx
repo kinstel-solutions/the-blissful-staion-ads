@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { AlexButton } from "../ui/AlexButton";
 
@@ -42,10 +44,14 @@ export function AboutTherapist() {
             </p>
 
             <AlexButton
-              href="#contact"
+              href="#booking-form"
+              onClick={(e) => {
+                e.preventDefault();
+                window.dispatchEvent(new CustomEvent("focus-booking-form"));
+              }}
               size="md"
               className="shadow-xl">
-              Book a Consultation
+              Schedule My Appointment
             </AlexButton>
           </div>
         </div>

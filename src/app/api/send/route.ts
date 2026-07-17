@@ -13,22 +13,28 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { name, phone, age, concern, email, message } = await req.json();
-
+    const { name, phone, age, concern, email, message, isPriority } = await req.json();
+ 
     // 1. Send Notification to Clinic
     const clinicEmailPromise = resend.emails.send({
       from: "The Blissful Station Website <inquiry@theblissfulstation.com>",
       to: ["kinstelsolutions@gmail.com", "contact.tbfst@gmail.com"],
-      subject: `New Lead: ${name} (${concern})`,
+      subject: `${isPriority ? "[URGENT] " : ""}New Lead: ${name} (${concern})`,
       replyTo: email,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 10px; overflow: hidden;">
-          <div style="background-color: #214D3E; color: white; padding: 20px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px;">New Lead Captured</h1>
+          <div style="background-color: ${isPriority ? "#d32f2f" : "#214D3E"}; color: white; padding: 20px; text-align: center;">
+            <h1 style="margin: 0; font-size: 24px;">${isPriority ? "⚠️ URGENT Priority Lead" : "New Lead Captured"}</h1>
           </div>
           <div style="padding: 30px;">
             <p style="font-size: 16px;">You have received a new consultation request from your landing page.</p>
             <table style="width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 20px;">
+              ${isPriority ? `
+              <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%; color: #d32f2f;">Priority Status:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; color: #d32f2f;">🚨 Priority Booking Requested</td>
+              </tr>
+              ` : ''}
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%;">Full Name:</td>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${name}</td>

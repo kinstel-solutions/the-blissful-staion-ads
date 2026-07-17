@@ -75,10 +75,10 @@ export default function ExpertPsychologistPage() {
             </div> */}
 
             <AlexButton
-              href="#contact"
+              href="/#booking-form"
               size="md"
               className="shadow-xl">
-              Book a Consultation
+              Schedule My Appointment
             </AlexButton>
           </div>
         </div>

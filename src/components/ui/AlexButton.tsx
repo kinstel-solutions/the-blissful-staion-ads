@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 interface AlexButtonProps {
   href?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
   children: React.ReactNode;
   className?: string;
   size?: 'sm' | 'md' | 'lg';

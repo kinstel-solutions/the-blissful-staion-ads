@@ -34,6 +34,7 @@ const formSchema = z.object({
     }),
   concern: z.string().min(1, "Please select a concern"),
   message: z.string().optional(),
+  isPriority: z.boolean().optional(),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -67,6 +68,7 @@ export function ContactForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       concern: "",
+      isPriority: false,
     },
   });
 
@@ -84,6 +86,42 @@ export function ContactForm() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    const handleFocus = () => {
+      const el = document.getElementById("booking-form");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        setTimeout(() => {
+          const nameInput = document.getElementById("contact-name");
+          if (nameInput) nameInput.focus();
+        }, 550);
+      }
+    };
+
+    if (window.location.hash === "#booking-form") {
+      setTimeout(handleFocus, 800);
+    }
+
+    window.addEventListener("focus-booking-form", handleFocus);
+    return () => {
+      window.removeEventListener("focus-booking-form", handleFocus);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handlePriorityClick = () => {
+      setValue("isPriority", true);
+      // Wait a short moment to ensure states align, then dispatch focus event
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent("focus-booking-form"));
+      }, 50);
+    };
+    window.addEventListener("priority-booking-click", handlePriorityClick);
+    return () => {
+      window.removeEventListener("priority-booking-click", handlePriorityClick);
+    };
+  }, [setValue]);
 
   const onSubmit = async (data: FormData) => {
     setStatus("submitting");
@@ -147,8 +185,9 @@ export function ContactForm() {
 
   return (
     <form
+      id="booking-form"
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-5">
+      className="space-y-5 scroll-mt-28">
       <div className="form-group">
         <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
           <User
@@ -158,6 +197,7 @@ export function ContactForm() {
           Full Name *
         </label>
         <input
+          id="contact-name"
           {...register("name")}
           placeholder="e.g. Rahul Sharma"
           className={`w-full py-3 px-4 rounded-xl border ${errors.name ? "border-red-400" : "border-gray-200"} bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all text-[15px]`}
@@ -305,6 +345,18 @@ export function ContactForm() {
         />
       </div>
 
+      <div className="form-group flex items-center gap-3 py-1">
+        <input
+          type="checkbox"
+          id="isPriority"
+          {...register("isPriority")}
+          className="w-4 h-4 rounded border-gray-300 text-[var(--primary)] focus:ring-[var(--primary)] cursor-pointer"
+        />
+        <label htmlFor="isPriority" className="text-sm font-medium text-[var(--text-dark)] cursor-pointer select-none">
+          Request Priority Booking (For urgent concerns)
+        </label>
+      </div>
+
       {status === "error" && (
         <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-sm mb-4 animate-in fade-in slide-in-from-top-2 duration-200">
           <p className="font-semibold flex items-center gap-2">
@@ -318,22 +370,20 @@ export function ContactForm() {
         </div>
       )}
 
-      <div className="pt-4 flex justify-start">
+      <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <AlexButton
           type="submit"
           size="md"
           className="shadow-xl"
           disabled={status === "submitting"}>
-          {status === "submitting" ? "Processing..." : "Book My Consultation"}
+          {status === "submitting" ? "Processing..." : "Schedule My Appointment"}
         </AlexButton>
+        
+        <div className="flex items-center justify-center gap-2 text-xs text-[#2e7d32] bg-[#e8f5e9] px-4 py-2.5 rounded-xl border border-[#c8e6c9] font-medium shadow-sm">
+          <Lock size={12} className="shrink-0" />
+          <span>100% Confidential & Secure</span>
+        </div>
       </div>
-      <p className="text-left text-[11px] text-[var(--text-light)] mt-4 opacity-70">
-        <Lock
-          size={11}
-          className="inline mr-1 text-[var(--primary)]"
-        />{" "}
-        Secure & Confidential Session Request
-      </p>
     </form>
   );
 }
