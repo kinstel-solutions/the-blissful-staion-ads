@@ -1,0 +1,359 @@
+Report from Jul 22, 2026, 6:21:49 PM
+https://www.theblissfulstation.com
+Enter a valid URL
+
+
+smartphone
+Mobile
+
+computer
+Desktop
+
+Discover what your real users are experiencing
+This URL
+Origin
+
+Core Web Vitals Assessment: 
+Failed
+
+Collapse view
+Largest Contentful Paint (LCP)
+2.6 s
+
+Page Loads
+Good (≤ 2.5 s)
+73%
+Needs Improvement (2.5 s - 4 s)
+15%
+Poor (> 4 s)
+12%
+75th Percentile - 2.6 s
+Core Web Vital
+Interaction to Next Paint (INP)
+N/A
+
+Page Loads
+Good (≤ 200 ms)
+--%
+Needs Improvement (200 ms - 500 ms)
+--%
+Poor (> 500 ms)
+--%
+75th Percentile - N/A
+Core Web Vital
+Cumulative Layout Shift (CLS)
+0
+
+Page Loads
+Good (≤ 0.1)
+96%
+Needs Improvement (0.1 - 0.25)
+3%
+Poor (> 0.25)
+1%
+75th Percentile - 0
+Core Web Vital
+Other Notable Metrics
+First Contentful Paint (FCP)
+2.4 s
+
+Page Loads
+Good (≤ 1.8 s)
+64%
+Needs Improvement (1.8 s - 3 s)
+21%
+Poor (> 3 s)
+16%
+75th Percentile - 2.4 s
+ 
+Time to First Byte (TTFB)
+1.3 s
+
+Page Loads
+Good (≤ 0.8 s)
+55%
+Needs Improvement (0.8 s - 1.8 s)
+32%
+Poor (> 1.8 s)
+13%
+75th Percentile - 1.3 s
+Experimental
+Latest 28-day period
+(
+history
+)
+Various mobile devices
+
+Many samples (
+Chrome UX Report
+)
+Full visit durations
+Various network connections
+
+All Chrome versions
+
+Diagnose performance issues
+83
+Performance
+91
+Accessibility
+96
+Best Practices
+100
+SEO
+2/2
+Agentic Browsing
+83
+FCP
++10
+LCP
++21
+TBT
++18
+CLS
++25
+SI
++9
+Performance
+Values are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.
+0–49
+50–89
+90–100
+Final Screenshot
+
+Metrics
+Collapse view
+First Contentful Paint
+1.0 s
+First Contentful Paint marks the time at which the first text or image is painted. Learn more about the First Contentful Paint metric.
+Largest Contentful Paint
+2.8 s
+Largest Contentful Paint marks the time at which the largest text or image is painted. Learn more about the Largest Contentful Paint metric
+Total Blocking Time
+470 ms
+Sum of all time periods between FCP and Time to Interactive, when task length exceeded 50ms, expressed in milliseconds. Learn more about the Total Blocking Time metric.
+Cumulative Layout Shift
+0
+Cumulative Layout Shift measures the movement of visible elements within the viewport. Learn more about the Cumulative Layout Shift metric.
+Speed Index
+2.9 s
+Speed Index shows how quickly the contents of a page are visibly populated. Learn more about the Speed Index metric.
+Captured at Jul 22, 2026, 6:21 PM GMT+5:30
+Emulated Moto G Power with Lighthouse 13.4.0
+Single page session
+Initial page load
+Slow 4G throttling
+Using HeadlessChromium 149.0.7827.155 with lr
+View Treemap
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Show audits relevant to:
+
+All
+
+FCP
+
+LCP
+
+TBT
+
+CLS
+Insights
+Legacy JavaScript Est savings of 14 KiB
+Polyfills and transforms enable older browsers to use new JavaScript features. However, many aren't necessary for modern browsers. Consider modifying your JavaScript build process to not transpile Baseline features, unless you know you must support older browsers. Learn why most sites can deploy ES6+ code without transpilingLCPFCPUnscored
+URL
+Wasted bytes
+theblissfulstation.com 1st party
+13.7 KiB
+…chunks/69be398…d.js(www.theblissfulstation.com)
+13.7 KiB
+…chunks/69be398…d.js:1:5107(www.theblissfulstation.com)
+Array.prototype.at
+…chunks/69be398…d.js:1:4495(www.theblissfulstation.com)
+Array.prototype.flat
+…chunks/69be398…d.js:1:4608(www.theblissfulstation.com)
+Array.prototype.flatMap
+…chunks/69be398…d.js:1:4984(www.theblissfulstation.com)
+Object.fromEntries
+…chunks/69be398…d.js:1:5242(www.theblissfulstation.com)
+Object.hasOwn
+…chunks/69be398…d.js:1:4237(www.theblissfulstation.com)
+String.prototype.trimEnd
+…chunks/69be398…d.js:1:4152(www.theblissfulstation.com)
+String.prototype.trimStart
+Render-blocking requests Est savings of 40 ms
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
+URL
+Transfer Size
+Duration
+theblissfulstation.com 1st party
+11.8 KiB	150 ms
+…chunks/15f8e18789cb735c.css(www.theblissfulstation.com)
+11.8 KiB
+150 ms
+Forced reflow
+A forced reflow occurs when JavaScript queries geometric properties (such as offsetWidth) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn more about forced reflows and possible mitigations.Unscored
+Top function call
+Total reflow time
+…chunks/69be398…d.js:2:7097(www.theblissfulstation.com)
+30 ms
+Source
+Total reflow time
+…chunks/7c842d3caa0a590e.js:3:4967(www.theblissfulstation.com)
+30 ms
+LCP request discovery
+Optimize LCP by making the LCP image discoverable from the HTML immediately, and avoiding lazy-loadingLCPUnscored
+LCP resources should not use loading=lazy
+fetchpriority=high should be applied to the image preload request
+Request is discoverable in initial document
+Entrance
+<img alt="Entrance" draggable="false" decoding="async" data-nimg="fill" class="object-cover" sizes="(max-width: 768px) 85vw, (max-width: 1024px) 500px, 600px" srcset="/_next/image?url=%2Fnew_Images%2Ftbs_entrance.jpeg&amp;w=640&amp;q=75 640w, /_next…" src="https://www.theblissfulstation.com/_next/image?url=%2Fnew_Images%2Ftbs_ent…" style="position: absolute; height: 100%; width: 100%; inset: 0px;">
+Network dependency tree
+Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored
+Maximum critical path latency: 115 ms
+Initial Navigation
+https://www.theblissfulstation.com - 74 ms, 19.63 KiB
+…chunks/15f8e18789cb735c.css(www.theblissfulstation.com) - 115 ms, 11.77 KiB
+Preconnected origins
+preconnect hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.
+no origins were preconnected
+Preconnect candidates
+Add preconnect hints to your most important origins, but try to use no more than 4.
+No additional origins are good candidates for preconnecting
+Improve image delivery Est savings of 5 KiB
+Reducing the download time of images can improve the perceived load time of the page and LCP. Learn more about optimizing image sizeLCPFCPUnscored
+URL
+Resource Size
+Est Savings
+theblissfulstation.com 1st party
+45.0 KiB	4.9 KiB
+Entrance
+<img alt="Entrance" draggable="false" decoding="async" data-nimg="fill" class="object-cover" sizes="(max-width: 768px) 85vw, (max-width: 1024px) 500px, 600px" srcset="/_next/image?url=%2Fnew_Images%2Ftbs_entrance.jpeg&amp;w=640&amp;q=75 640w, /_next…" src="https://www.theblissfulstation.com/_next/image?url=%2Fnew_Images%2Ftbs_ent…" style="position: absolute; height: 100%; width: 100%; inset: 0px;">
+/_next/image?url=%2Fnew_Images%2Ftbs_entrance.jpeg&w=640&q=75(www.theblissfulstation.com)
+45.0 KiB
+4.9 KiB
+Increasing the image compression factor could improve this image's download size.
+4.9 KiB
+Optimize DOM size
+LCP breakdown
+3rd parties
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Minimize main-thread work 2.2 s
+Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored
+Category
+Time Spent
+Script Evaluation
+814 ms
+Rendering
+382 ms
+Other
+373 ms
+Script Parsing & Compilation
+336 ms
+Style & Layout
+283 ms
+Parse HTML & CSS
+26 ms
+Garbage Collection
+9 ms
+Reduce unused JavaScript Est savings of 247 KiB
+Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+Google Tag Manager tag-manager 
+469.9 KiB	198.8 KiB
+/gtag/js?id=G-Y72BE55PB4&cx=c&gtm=4e67k1(www.googletagmanager.com)
+178.0 KiB
+73.1 KiB
+/gtm.js?id=GTM-N83PLXXG(www.googletagmanager.com)
+145.4 KiB
+67.5 KiB
+/gtag/js?id=AW-181…&cx=c&gtm=4e67k1(www.googletagmanager.com)
+146.5 KiB
+58.1 KiB
+theblissfulstation.com 1st party
+105.5 KiB	47.8 KiB
+…chunks/a01afa2d0b88c314.js(www.theblissfulstation.com)
+36.2 KiB
+24.9 KiB
+…chunks/69be398…d.js(www.theblissfulstation.com)
+69.4 KiB
+23.0 KiB
+Avoid long main-thread tasks 7 long tasks found
+Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. Learn how to avoid long main-thread tasksTBTUnscored
+URL
+Start Time
+Duration
+Google Tag Manager tag-manager 
+701 ms
+/gtag/js?id=G-Y72BE55PB4&cx=c&gtm=4e67k1(www.googletagmanager.com)
+7,857 ms
+269 ms
+/gtag/js?id=AW-181…&cx=c&gtm=4e67k1(www.googletagmanager.com)
+6,507 ms
+231 ms
+/gtm.js?id=GTM-N83PLXXG(www.googletagmanager.com)
+4,806 ms
+136 ms
+/gtm.js?id=GTM-N83PLXXG(www.googletagmanager.com)
+4,942 ms
+65 ms
+theblissfulstation.com 1st party
+276 ms
+…chunks/69be398…d.js(www.theblissfulstation.com)
+2,251 ms
+99 ms
+https://www.theblissfulstation.com
+951 ms
+97 ms
+…chunks/69be398…d.js(www.theblissfulstation.com)
+2,701 ms
+80 ms
+Avoid non-composited animations 9 animated elements found
+Animations which are not composited can be janky and increase CLS. Learn how to avoid non-composited animationsCLSUnscored
+Element
+Name
+Our Clinical Standards
+<a class="group alex-button inline-flex items-center justify-center rounded-full tra…" href="#contact">
+Unsupported CSS Property: background-position-x
+simmer
+97937 43769
+<a class="group alex-button inline-flex items-center justify-center rounded-full tra…" href="tel:+919793743769">
+Unsupported CSS Property: background-position-x
+simmer
+in Lucknow
+<span class="simmer-text italic font-bold">
+Unsupported CSS Property: background-position-x
+simmer
+97937 43769
+<a class="group alex-button inline-flex items-center justify-center rounded-full tra…" href="tel:+919793743769">
+Unsupported CSS Property: background-position-x
+simmer
+Schedule My Appointment
+<button type="submit" class="group alex-button inline-flex items-center justify-center rounded-full tra…">
+Unsupported CSS Property: background-position-x
+simmer
+Schedule My Appointment
+<a class="group alex-button inline-flex items-center justify-center rounded-full tra…" href="#booking-form">
+Unsupported CSS Property: background-position-x
+simmer
+Schedule My Appointment
+<a class="group alex-button inline-flex items-center justify-center rounded-full tra…" href="#booking-form">
+Unsupported CSS Property: background-position-x
+simmer
+Schedule My Appointment
+<a class="group alex-button inline-flex items-center justify-center rounded-full tra…" href="#booking-form">
+Unsupported CSS Property: background-position-x
+simmer
+Swatantra Kumar
+<span class="italic simmer-text">
+Unsupported CSS Property: background-position-x
+simmer

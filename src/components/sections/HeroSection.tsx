@@ -12,7 +12,9 @@ export function HeroSection() {
 
   const handleServiceClick = (e: React.MouseEvent, serviceId: string) => {
     e.preventDefault();
-    window.dispatchEvent(new CustomEvent("expand-service", { detail: { serviceId } }));
+    window.dispatchEvent(
+      new CustomEvent("expand-service", { detail: { serviceId } }),
+    );
   };
 
   const startTimer = () => {
@@ -71,28 +73,63 @@ export function HeroSection() {
               RCI Registered Clinical Psychologist
             </div>
             <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
-              20% Off First Session
+              Online Therapy Available
             </div>
             <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
-              Student & Special Discounts
+              Therapy Starting @₹799
             </div>
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[900px]">
-            Trusted Therapist & Clinical <br className="hidden lg:block" />
-            Psychologist <span className="simmer-text italic font-bold">in Lucknow</span>
+            Trusted Therapist
+            <span className="simmer-text italic font-bold">
+              {" "}
+              in Gomti Nagar, Lucknow
+            </span>
           </h1>
 
           <p className="text-lg md:text-xl text-[var(--text-light)] mb-8 max-w-[700px] leading-relaxed">
             <span className="hidden md:inline">
-              Lucknow&apos;s trusted therapist and clinical psychologist providing scientific, evidence-based care tailored to your unique mental health journey.{" "}
+              Lucknow&apos;s trusted therapist and clinical psychologist
+              providing scientific, evidence-based care tailored to your unique
+              mental health journey.{" "}
             </span>
             Top psychologist near me for scientific, evidence-based therapy for{" "}
-            <a href="#services" onClick={(e) => handleServiceClick(e, "anxiety")} className="underline hover:text-[var(--primary)] transition-colors font-medium">Anxiety</a>,{" "}
-            <a href="#services" onClick={(e) => handleServiceClick(e, "depression")} className="underline hover:text-[var(--primary)] transition-colors font-medium">Depression</a>,{" "}
-            <a href="#services" onClick={(e) => handleServiceClick(e, "adhd-asd")} className="underline hover:text-[var(--primary)] transition-colors font-medium">ADHD</a>,{" "}
-            <a href="#services" onClick={(e) => handleServiceClick(e, "child-therapy")} className="underline hover:text-[var(--primary)] transition-colors font-medium">Child therapy</a>,{" "}
-            <a href="#services" onClick={(e) => handleServiceClick(e, "cbt")} className="underline hover:text-[var(--primary)] transition-colors font-medium">CBT</a> & more.
+            <a
+              href="#services"
+              onClick={(e) => handleServiceClick(e, "anxiety")}
+              className="underline hover:text-[var(--primary)] transition-colors font-medium">
+              Anxiety
+            </a>
+            ,{" "}
+            <a
+              href="#services"
+              onClick={(e) => handleServiceClick(e, "depression")}
+              className="underline hover:text-[var(--primary)] transition-colors font-medium">
+              Depression
+            </a>
+            ,{" "}
+            <a
+              href="#services"
+              onClick={(e) => handleServiceClick(e, "adhd-asd")}
+              className="underline hover:text-[var(--primary)] transition-colors font-medium">
+              ADHD
+            </a>
+            ,{" "}
+            <a
+              href="#services"
+              onClick={(e) => handleServiceClick(e, "child-therapy")}
+              className="underline hover:text-[var(--primary)] transition-colors font-medium">
+              Child therapy
+            </a>
+            ,{" "}
+            <a
+              href="#services"
+              onClick={(e) => handleServiceClick(e, "cbt")}
+              className="underline hover:text-[var(--primary)] transition-colors font-medium">
+              CBT
+            </a>{" "}
+            & more.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
@@ -104,7 +141,7 @@ export function HeroSection() {
               }}
               size="md"
               className="shadow-lg hover:shadow-xl">
-              Schedule My Appointment
+              Consult Now
             </AlexButton>
             <AlexButton
               href="#booking-form"
@@ -114,7 +151,7 @@ export function HeroSection() {
               }}
               size="md"
               className="alex-button-secondary shadow-lg hover:shadow-xl">
-              Priority Booking
+              Book Online Session
             </AlexButton>
           </div>
         </div>
@@ -143,7 +180,7 @@ export function HeroSection() {
                   src: "/new_Images/tbs_therapy-room.jpeg",
                   alt: "Therapy Room",
                 },
-                { src: "/new_Images/tbs_clinician.jpeg", alt: "Our Clinician" },
+                // { src: "/new_Images/tbs_clinician.jpeg", alt: "Our Clinician" },
                 {
                   src: "/new_Images/tbs_clinician-certificate.jpeg",
                   alt: "Certification",

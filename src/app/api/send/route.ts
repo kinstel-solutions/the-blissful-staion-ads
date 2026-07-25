@@ -13,28 +13,33 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { name, phone, age, concern, email, message, isPriority } = await req.json();
- 
+    const { name, phone, age, concern, email, message, isPriority } =
+      await req.json();
+
     // 1. Send Notification to Clinic
     const clinicEmailPromise = resend.emails.send({
       from: "The Blissful Station Website <inquiry@theblissfulstation.com>",
       to: ["kinstelsolutions@gmail.com", "contact.tbfst@gmail.com"],
-      subject: `${isPriority ? "[URGENT] " : ""}New Lead: ${name} (${concern})`,
+      subject: `${isPriority ? "[Online Session Request] " : ""}New Lead: ${name} (${concern})`,
       replyTo: email,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 10px; overflow: hidden;">
-          <div style="background-color: ${isPriority ? "#d32f2f" : "#214D3E"}; color: white; padding: 20px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px;">${isPriority ? "⚠️ URGENT Priority Lead" : "New Lead Captured"}</h1>
+          <div style="background-color: ${isPriority ? "#214D3E" : "#214D3E"}; color: white; padding: 20px; text-align: center;">
+            <h1 style="margin: 0; font-size: 24px;">${isPriority ? "New Lead(Online Session)" : "New Lead Captured"}</h1>
           </div>
           <div style="padding: 30px;">
             <p style="font-size: 16px;">You have received a new consultation request from your landing page.</p>
             <table style="width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 20px;">
-              ${isPriority ? `
+              ${
+                isPriority
+                  ? `
               <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%; color: #d32f2f;">Priority Status:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; color: #d32f2f;">🚨 Priority Booking Requested</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%; color: #d32f2f;">Booking Request(Preference):</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; color: #d32f2f;"> for Online Therapy Session</td>
               </tr>
-              ` : ''}
+              `
+                  : ""
+              }
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%;">Full Name:</td>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${name}</td>
@@ -55,14 +60,18 @@ export async function POST(req: Request) {
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Primary Concern:</td>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${concern}</td>
               </tr>
-              ${message ? `
+              ${
+                message
+                  ? `
               <tr>
                 <td colspan="2" style="padding: 10px 10px 0 10px; font-weight: bold; width: 100%;">Additional Concerns:</td>
               </tr>
               <tr>
                 <td colspan="2" style="padding: 0 10px 10px 10px; border-bottom: 1px solid #eee; word-break: break-word; white-space: pre-wrap;">${message}</td>
               </tr>
-              ` : ''}
+              `
+                  : ""
+              }
             </table>
           </div>
           <div style="background-color: #f9f9f9; padding: 15px; text-align: center; font-size: 12px; color: #999;">
@@ -111,7 +120,8 @@ export async function POST(req: Request) {
       console.error("Clinic Email Error:", clinicRes.error);
       return NextResponse.json(
         {
-          error: (clinicRes.error as Error).message || "Failed to notify clinic",
+          error:
+            (clinicRes.error as Error).message || "Failed to notify clinic",
         },
         { status: 500 },
       );

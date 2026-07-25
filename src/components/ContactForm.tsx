@@ -352,8 +352,10 @@ export function ContactForm() {
           {...register("isPriority")}
           className="w-4 h-4 rounded border-gray-300 text-[var(--primary)] focus:ring-[var(--primary)] cursor-pointer"
         />
-        <label htmlFor="isPriority" className="text-sm font-medium text-[var(--text-dark)] cursor-pointer select-none">
-          Request Priority Booking (For urgent concerns)
+        <label
+          htmlFor="isPriority"
+          className="text-sm font-medium text-[var(--text-dark)] cursor-pointer select-none">
+          Booking for Online Therapy Session
         </label>
       </div>
 
@@ -376,11 +378,16 @@ export function ContactForm() {
           size="md"
           className="shadow-xl"
           disabled={status === "submitting"}>
-          {status === "submitting" ? "Processing..." : "Schedule My Appointment"}
+          {status === "submitting"
+            ? "Processing..."
+            : "Schedule My Appointment"}
         </AlexButton>
-        
+
         <div className="flex items-center justify-center gap-2 text-xs text-[#2e7d32] bg-[#e8f5e9] px-4 py-2.5 rounded-xl border border-[#c8e6c9] font-medium shadow-sm">
-          <Lock size={12} className="shrink-0" />
+          <Lock
+            size={12}
+            className="shrink-0"
+          />
           <span>100% Confidential & Secure</span>
         </div>
       </div>
