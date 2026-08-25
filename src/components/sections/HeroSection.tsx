@@ -81,11 +81,8 @@ export function HeroSection() {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[900px]">
-            Trusted Therapist
-            <span className="simmer-text italic font-bold">
-              {" "}
-              in Gomti Nagar, Lucknow
-            </span>
+            Best Psychologist
+            <span className="simmer-text italic font-bold"> in Lucknow</span>
           </h1>
 
           <p className="text-lg md:text-xl text-[var(--text-light)] mb-8 max-w-[700px] leading-relaxed">
@@ -94,7 +91,7 @@ export function HeroSection() {
               providing scientific, evidence-based care tailored to your unique
               mental health journey.{" "}
             </span>
-            Top psychologist near me for scientific, evidence-based therapy for{" "}
+            Top psychologist near you for scientific, evidence-based therapy for{" "}
             <a
               href="#services"
               onClick={(e) => handleServiceClick(e, "anxiety")}
