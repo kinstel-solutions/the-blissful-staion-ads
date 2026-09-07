@@ -170,6 +170,12 @@ export function HeroSection() {
                   alt: "Reception Area",
                 },
                 {
+                  src: "/assets/sanghmitra.webp",
+                  alt: "Sanghmitra - Clinical Psychologist",
+                  cardWidth: "w-[85vw] md:w-[340px] lg:w-[360px]",
+                  objectPosition: "object-center",
+                },
+                {
                   src: "/new_Images/tbs_office-area.jpeg",
                   alt: "Clinical Office Space",
                 },
@@ -189,13 +195,13 @@ export function HeroSection() {
               ].map((img, idx) => (
                 <div
                   key={idx}
-                  className="shrink-0 w-[85vw] md:w-[500px] lg:w-[600px] h-full relative snap-center group/card rounded-[20px] overflow-hidden">
+                  className={`shrink-0 ${img.cardWidth || "w-[85vw] md:w-[500px] lg:w-[600px]"} h-full relative snap-center group/card rounded-[20px] overflow-hidden`}>
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
-                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 500px, 600px"
-                    className="object-cover"
+                    sizes={img.cardWidth ? "(max-width: 768px) 85vw, 360px" : "(max-width: 768px) 85vw, (max-width: 1024px) 500px, 600px"}
+                    className={`object-cover ${img.objectPosition || "object-center"}`}
                     draggable="false"
                     priority={idx === 0}
                   />

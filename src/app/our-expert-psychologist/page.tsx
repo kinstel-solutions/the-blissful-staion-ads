@@ -23,10 +23,23 @@ export default function ExpertPsychologistPage() {
   return (
     <main className="pt-16 md:pt-32 pb-10 md:pb-20 bg-[var(--bg-color)] min-h-screen">
       <div className="container mx-auto px-6 md:px-8 max-w-[1100px]">
-        {/* Hero Section / Profile Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-10 md:mb-20">
+        {/* Page Heading */}
+        <div className="text-center max-w-[800px] mx-auto mb-12 md:mb-16">
+          <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[11px] font-bold tracking-[1.5px] px-4 py-1.5 rounded-full uppercase mb-4 font-outfit">
+            CLINICAL EXCELLENCE & COMPASSION
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-cormorant font-medium text-[var(--text-dark)] mb-4 leading-tight">
+            Meet Our <span className="italic simmer-text">Expert Psychologists</span>
+          </h1>
+          <p className="text-lg text-[var(--text-light)] leading-relaxed">
+            RCI-registered clinicians providing ethical, scientific, and compassionate psychological care tailored to your unique journey.
+          </p>
+        </div>
+
+        {/* Clinician 1: Swatantra Kumar */}
+        <div className="bg-white rounded-[35px] md:rounded-[45px] p-6 md:p-12 shadow-xl border border-[var(--glass-border)] grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center mb-12 md:mb-16 relative overflow-hidden">
           <div className="lg:col-span-5 relative">
-            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-2xl rotate-[-2deg] transition-transform hover:rotate-0 duration-500">
+            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-xl rotate-[-1deg] transition-transform hover:rotate-0 duration-500 max-w-[380px] mx-auto">
               <Image
                 src="/new_Images/tbs_clinician.jpeg"
                 alt="Swatantra Kumar - Clinical Psychologist"
@@ -37,19 +50,18 @@ export default function ExpertPsychologistPage() {
               />
             </div>
             {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--accent)] opacity-20 rounded-full -z-0"></div>
+            <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-[var(--accent)] opacity-20 rounded-full -z-0"></div>
             <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-[var(--primary)] opacity-10 rounded-full -z-0"></div>
           </div>
 
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.2px] px-3 py-1 rounded-full uppercase mb-2 font-outfit">
+            <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.2px] px-3.5 py-1 rounded-full uppercase mb-3 font-outfit">
               Founder & Clinical Psychologist
             </div>
-            <h1 className="text-4xl md:text-6xl font-cormorant font-medium text-[var(--text-dark)] mb-4 leading-tight">
-              Hello, I'm <br />
-              <span className="italic simmer-text">Swatantra Kumar</span>
-            </h1>
-            <p className="text-xl text-[var(--primary)] font-medium mb-6 font-cormorant tracking-wide">
+            <h2 className="text-3xl md:text-5xl font-cormorant font-medium text-[var(--text-dark)] mb-2 leading-tight">
+              Swatantra Kumar
+            </h2>
+            <p className="text-xl text-[var(--primary)] font-medium mb-4 font-cormorant tracking-wide">
               Registered Clinical Psychologist (RCI)
             </p>
             <p className="text-lg text-[var(--text-light)] mb-8 leading-relaxed max-w-[600px]">
@@ -59,20 +71,89 @@ export default function ExpertPsychologistPage() {
               practices with empathetic care.
             </p>
 
-            {/* <div className="flex flex-wrap gap-4 mb-10">
-              <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-2xl shadow-sm border border-[var(--glass-border)]">
-                <Phone className="w-5 h-5 text-[var(--primary)]" />
-                <span className="font-semibold text-[var(--text-dark)]">
-                  +91 95653 74151
-                </span>
+            <AlexButton
+              href="/#booking-form"
+              size="md"
+              className="shadow-xl">
+              Schedule My Appointment
+            </AlexButton>
+          </div>
+        </div>
+
+        {/* Clinician 2: Sanghmitra */}
+        <div className="bg-white rounded-[35px] md:rounded-[45px] p-6 md:p-12 shadow-xl border border-[var(--glass-border)] grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center mb-10 md:mb-20 relative overflow-hidden">
+          <div className="lg:col-span-5 relative order-1 lg:order-2">
+            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-xl rotate-[1deg] transition-transform hover:rotate-0 duration-500 max-w-[380px] mx-auto">
+              <Image
+                src="/assets/sanghmitra.webp"
+                alt="Sanghmitra - Clinical Psychologist"
+                width={825}
+                height={1024}
+                className="w-full h-auto object-cover aspect-[4/5] object-top"
+              />
+            </div>
+            {/* Decorative Elements */}
+            <div className="absolute -bottom-6 -left-6 w-28 h-28 bg-[var(--secondary)] opacity-40 rounded-full -z-0"></div>
+            <div className="absolute -top-6 -right-6 w-24 h-24 border-2 border-[var(--primary)] opacity-10 rounded-full -z-0"></div>
+          </div>
+
+          <div className="lg:col-span-7 order-2 lg:order-1">
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.2px] px-3.5 py-1 rounded-full uppercase font-outfit">
+                Clinical Psychologist
+              </span>
+              <span className="inline-flex items-center bg-[var(--secondary)] text-[var(--primary)] text-[11px] font-semibold px-3 py-1 rounded-full">
+                RCI Registered
+              </span>
+              <span className="inline-flex items-center bg-gray-100 text-[var(--text-dark)] text-[11px] font-semibold px-3 py-1 rounded-full">
+                Experience: 2 Years
+              </span>
+            </div>
+
+            <h2 className="text-3xl md:text-5xl font-cormorant font-medium text-[var(--text-dark)] mb-2 leading-tight">
+              Sanghmitra
+            </h2>
+            <p className="text-xl text-[var(--primary)] font-medium mb-4 font-cormorant tracking-wide">
+              Clinical Psychologist | M.Phil. in Clinical Psychology
+            </p>
+
+            <p className="text-base md:text-lg text-[var(--text-light)] mb-4 leading-relaxed">
+              Sanghmitra is a Clinical Psychologist who works with depression, anxiety, self-image concerns, substance use, career-related concerns, and life stressors. She also conducts psychological assessments, including intelligence, neuropsychological, and projective assessments, and provides psychoeducation.
+            </p>
+
+            <p className="text-base text-[var(--text-light)] mb-5 leading-relaxed">
+              Her approach is integrative, drawing from <strong>Narrative Therapy</strong>, <strong>CBT</strong>, <strong>DBT</strong>, and <strong>ACT</strong>. She works collaboratively and compassionately, helping clients understand their experiences, develop practical coping skills, regulate emotions, and build meaningful change.
+            </p>
+
+            {/* Quote Card */}
+            <div className="bg-[var(--bg-color)] border-l-4 border-[var(--primary)] p-4 rounded-r-2xl mb-6">
+              <p className="font-cormorant text-lg italic text-[var(--text-dark)] mb-1">
+                “The person is not the problem; the problem is the problem.”
+              </p>
+              <div className="flex justify-between items-center text-xs text-[var(--primary)] font-medium">
+                <span>— Michael White</span>
+                <span className="italic">Perspective creates a difference.</span>
               </div>
-              <div className="flex items-center gap-3 bg-white px-5 py-3 rounded-2xl shadow-sm border border-[var(--glass-border)]">
-                <Mail className="w-5 h-5 text-[var(--primary)]" />
-                <span className="font-semibold text-[var(--text-dark)]">
-                  swatantra.psych@gmail.com
+            </div>
+
+            {/* Specialized Areas Chips */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {[
+                "Narrative Therapy",
+                "CBT & DBT",
+                "ACT",
+                "Psychological Assessments",
+                "Depression & Anxiety",
+                "Self-Image & Stress",
+                "Psychoeducation",
+              ].map((tag, idx) => (
+                <span
+                  key={idx}
+                  className="bg-white border border-[var(--glass-border)] text-[var(--primary)] text-xs font-medium px-3 py-1 rounded-lg shadow-xs">
+                  {tag}
                 </span>
-              </div>
-            </div> */}
+              ))}
+            </div>
 
             <AlexButton
               href="/#booking-form"
@@ -157,6 +238,10 @@ export default function ExpertPsychologistPage() {
               { src: "/assets/therapy-room-wide.jpg", alt: "Therapy Room" },
               { src: "/new_Images/tbs_clinician.jpeg", alt: "Our Clinician" },
               {
+                src: "/assets/sanghmitra.webp",
+                alt: "Sanghmitra - Clinical Psychologist",
+              },
+              {
                 src: "/new_Images/tbs_clinician-certificate.jpeg",
                 alt: "Certification",
               },
@@ -172,6 +257,10 @@ export default function ExpertPsychologistPage() {
               },
               { src: "/new_Images/tbs_therapy-room.jpeg", alt: "Therapy Room" },
               { src: "/new_Images/tbs_clinician.jpeg", alt: "Our Clinician" },
+              {
+                src: "/assets/sanghmitra.webp",
+                alt: "Sanghmitra - Clinical Psychologist",
+              },
               {
                 src: "/new_Images/tbs_clinician-certificate.jpeg",
                 alt: "Certification",

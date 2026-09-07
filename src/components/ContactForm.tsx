@@ -188,6 +188,15 @@ export function ContactForm() {
       id="booking-form"
       onSubmit={handleSubmit(onSubmit)}
       className="space-y-5 scroll-mt-28">
+      {/* Confidence Trust Badge */}
+      <div className="inline-flex items-center gap-2 text-xs text-[#2e7d32] bg-[#e8f5e9] px-3.5 py-1.5 rounded-full border border-[#c8e6c9] font-medium shadow-sm mb-1">
+        <Lock
+          size={12}
+          className="shrink-0"
+        />
+        <span>100% Confidential & Secure Consultation</span>
+      </div>
+
       <div className="form-group">
         <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
           <User
@@ -372,7 +381,7 @@ export function ContactForm() {
         </div>
       )}
 
-      <div className="pt-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+      <div className="pt-4 flex justify-start">
         <AlexButton
           type="submit"
           size="md"
@@ -382,14 +391,6 @@ export function ContactForm() {
             ? "Processing..."
             : "Schedule My Appointment"}
         </AlexButton>
-
-        <div className="flex items-center justify-center gap-2 text-xs text-[#2e7d32] bg-[#e8f5e9] px-4 py-2.5 rounded-xl border border-[#c8e6c9] font-medium shadow-sm">
-          <Lock
-            size={12}
-            className="shrink-0"
-          />
-          <span>100% Confidential & Secure</span>
-        </div>
       </div>
     </form>
   );
