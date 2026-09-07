@@ -83,22 +83,8 @@ export default function ExpertPsychologistPage() {
 
         {/* Clinician 2: Sanghmitra */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16 md:mb-28">
-          <div className="lg:col-span-5 relative">
-            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-2xl rotate-[2deg] transition-transform hover:rotate-0 duration-500">
-              <Image
-                src="/assets/sanghmitra.webp"
-                alt="Sanghmitra - Clinical Psychologist"
-                width={825}
-                height={1024}
-                className="w-full h-auto object-cover aspect-[4/5] object-top"
-              />
-            </div>
-            {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[var(--secondary)] opacity-40 rounded-full -z-0"></div>
-            <div className="absolute -top-6 -right-6 w-24 h-24 border-2 border-[var(--primary)] opacity-10 rounded-full -z-0"></div>
-          </div>
-
-          <div className="lg:col-span-7">
+          {/* Info: Left on Desktop (lg:order-1), Below Image on Mobile (order-2) */}
+          <div className="lg:col-span-7 order-2 lg:order-1">
             <div className="flex flex-wrap items-center gap-2 mb-3">
               <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.2px] px-3 py-1 rounded-full uppercase font-outfit">
                 Clinical Psychologist
@@ -163,6 +149,22 @@ export default function ExpertPsychologistPage() {
               className="shadow-xl">
               Schedule My Appointment
             </AlexButton>
+          </div>
+
+          {/* Image: Right on Desktop (lg:order-2), Top on Mobile (order-1) */}
+          <div className="lg:col-span-5 relative order-1 lg:order-2">
+            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-2xl rotate-[2deg] transition-transform hover:rotate-0 duration-500">
+              <Image
+                src="/assets/sanghmitra.webp"
+                alt="Sanghmitra - Clinical Psychologist"
+                width={825}
+                height={1024}
+                className="w-full h-auto object-cover aspect-[4/5] object-top"
+              />
+            </div>
+            {/* Decorative Elements */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--secondary)] opacity-40 rounded-full -z-0"></div>
+            <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-[var(--primary)] opacity-10 rounded-full -z-0"></div>
           </div>
         </div>
 
