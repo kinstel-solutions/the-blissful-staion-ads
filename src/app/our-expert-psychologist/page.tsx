@@ -37,9 +37,9 @@ export default function ExpertPsychologistPage() {
         </div>
 
         {/* Clinician 1: Swatantra Kumar */}
-        <div className="bg-white rounded-[35px] md:rounded-[45px] p-6 md:p-12 shadow-xl border border-[var(--glass-border)] grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center mb-12 md:mb-16 relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16 md:mb-28">
           <div className="lg:col-span-5 relative">
-            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-xl rotate-[-1deg] transition-transform hover:rotate-0 duration-500 max-w-[380px] mx-auto">
+            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-2xl rotate-[-2deg] transition-transform hover:rotate-0 duration-500">
               <Image
                 src="/new_Images/tbs_clinician.jpeg"
                 alt="Swatantra Kumar - Clinical Psychologist"
@@ -50,18 +50,19 @@ export default function ExpertPsychologistPage() {
               />
             </div>
             {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -right-6 w-28 h-28 bg-[var(--accent)] opacity-20 rounded-full -z-0"></div>
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[var(--accent)] opacity-20 rounded-full -z-0"></div>
             <div className="absolute -top-6 -left-6 w-24 h-24 border-2 border-[var(--primary)] opacity-10 rounded-full -z-0"></div>
           </div>
 
           <div className="lg:col-span-7">
-            <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.2px] px-3.5 py-1 rounded-full uppercase mb-3 font-outfit">
+            <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.2px] px-3 py-1 rounded-full uppercase mb-2 font-outfit">
               Founder & Clinical Psychologist
             </div>
-            <h2 className="text-3xl md:text-5xl font-cormorant font-medium text-[var(--text-dark)] mb-2 leading-tight">
-              Swatantra Kumar
+            <h2 className="text-4xl md:text-6xl font-cormorant font-medium text-[var(--text-dark)] mb-4 leading-tight">
+              Hello, I'm <br />
+              <span className="italic simmer-text">Swatantra Kumar</span>
             </h2>
-            <p className="text-xl text-[var(--primary)] font-medium mb-4 font-cormorant tracking-wide">
+            <p className="text-xl text-[var(--primary)] font-medium mb-6 font-cormorant tracking-wide">
               Registered Clinical Psychologist (RCI)
             </p>
             <p className="text-lg text-[var(--text-light)] mb-8 leading-relaxed max-w-[600px]">
@@ -81,9 +82,9 @@ export default function ExpertPsychologistPage() {
         </div>
 
         {/* Clinician 2: Sanghmitra */}
-        <div className="bg-white rounded-[35px] md:rounded-[45px] p-6 md:p-12 shadow-xl border border-[var(--glass-border)] grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center mb-10 md:mb-20 relative overflow-hidden">
-          <div className="lg:col-span-5 relative order-1 lg:order-2">
-            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-xl rotate-[1deg] transition-transform hover:rotate-0 duration-500 max-w-[380px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16 md:mb-28">
+          <div className="lg:col-span-5 relative">
+            <div className="relative z-10 rounded-[30px] overflow-hidden border-8 border-white shadow-2xl rotate-[2deg] transition-transform hover:rotate-0 duration-500">
               <Image
                 src="/assets/sanghmitra.webp"
                 alt="Sanghmitra - Clinical Psychologist"
@@ -93,40 +94,41 @@ export default function ExpertPsychologistPage() {
               />
             </div>
             {/* Decorative Elements */}
-            <div className="absolute -bottom-6 -left-6 w-28 h-28 bg-[var(--secondary)] opacity-40 rounded-full -z-0"></div>
+            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-[var(--secondary)] opacity-40 rounded-full -z-0"></div>
             <div className="absolute -top-6 -right-6 w-24 h-24 border-2 border-[var(--primary)] opacity-10 rounded-full -z-0"></div>
           </div>
 
-          <div className="lg:col-span-7 order-2 lg:order-1">
+          <div className="lg:col-span-7">
             <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.2px] px-3.5 py-1 rounded-full uppercase font-outfit">
+              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[12px] font-bold tracking-[1.2px] px-3 py-1 rounded-full uppercase font-outfit">
                 Clinical Psychologist
               </span>
-              <span className="inline-flex items-center bg-[var(--secondary)] text-[var(--primary)] text-[11px] font-semibold px-3 py-1 rounded-full">
+              <span className="inline-flex items-center bg-[var(--secondary)] text-[var(--primary)] text-[11px] font-semibold px-2.5 py-0.5 rounded-full">
                 RCI Registered
               </span>
-              <span className="inline-flex items-center bg-gray-100 text-[var(--text-dark)] text-[11px] font-semibold px-3 py-1 rounded-full">
+              <span className="inline-flex items-center bg-gray-100 text-[var(--text-dark)] text-[11px] font-semibold px-2.5 py-0.5 rounded-full">
                 Experience: 2 Years
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-cormorant font-medium text-[var(--text-dark)] mb-2 leading-tight">
-              Sanghmitra
+            <h2 className="text-4xl md:text-6xl font-cormorant font-medium text-[var(--text-dark)] mb-4 leading-tight">
+              Hello, I'm <br />
+              <span className="italic simmer-text">Sanghmitra</span>
             </h2>
-            <p className="text-xl text-[var(--primary)] font-medium mb-4 font-cormorant tracking-wide">
+            <p className="text-xl text-[var(--primary)] font-medium mb-6 font-cormorant tracking-wide">
               Clinical Psychologist | M.Phil. in Clinical Psychology
             </p>
 
-            <p className="text-base md:text-lg text-[var(--text-light)] mb-4 leading-relaxed">
+            <p className="text-lg text-[var(--text-light)] mb-4 leading-relaxed max-w-[600px]">
               Sanghmitra is a Clinical Psychologist who works with depression, anxiety, self-image concerns, substance use, career-related concerns, and life stressors. She also conducts psychological assessments, including intelligence, neuropsychological, and projective assessments, and provides psychoeducation.
             </p>
 
-            <p className="text-base text-[var(--text-light)] mb-5 leading-relaxed">
+            <p className="text-base md:text-lg text-[var(--text-light)] mb-6 leading-relaxed max-w-[600px]">
               Her approach is integrative, drawing from <strong>Narrative Therapy</strong>, <strong>CBT</strong>, <strong>DBT</strong>, and <strong>ACT</strong>. She works collaboratively and compassionately, helping clients understand their experiences, develop practical coping skills, regulate emotions, and build meaningful change.
             </p>
 
             {/* Quote Card */}
-            <div className="bg-[var(--bg-color)] border-l-4 border-[var(--primary)] p-4 rounded-r-2xl mb-6">
+            <div className="bg-white/80 backdrop-blur-sm border-l-4 border-[var(--primary)] p-4 rounded-r-2xl mb-6 shadow-xs max-w-[600px]">
               <p className="font-cormorant text-lg italic text-[var(--text-dark)] mb-1">
                 “The person is not the problem; the problem is the problem.”
               </p>
@@ -137,7 +139,7 @@ export default function ExpertPsychologistPage() {
             </div>
 
             {/* Specialized Areas Chips */}
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2 mb-8 max-w-[600px]">
               {[
                 "Narrative Therapy",
                 "CBT & DBT",
