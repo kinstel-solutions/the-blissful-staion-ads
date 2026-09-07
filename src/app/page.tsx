@@ -3,6 +3,7 @@ import { WhyChooseUsSection } from "@/components/sections/WhyChooseUsSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { ActiveSectionObserver } from "@/components/ActiveSectionObserver";
 import dynamic from "next/dynamic";
+// import { AboutTherapist } from "@/components/sections/AboutTherapist";
 
 const TestimonialsSection = dynamic(
   () =>
