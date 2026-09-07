@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 interface AlexButtonProps {
   href?: string;
@@ -55,7 +56,11 @@ export function AlexButton({
     </>
   );
 
-  const baseClasses = `group alex-button inline-flex items-center justify-center rounded-full transition-all duration-300 font-semibold ${selectedSize.btn} ${className}`;
+  const baseClasses = cn(
+    'group alex-button inline-flex items-center justify-center rounded-full transition-all duration-300 font-semibold',
+    selectedSize.btn,
+    className
+  );
 
   if (href) {
     return (

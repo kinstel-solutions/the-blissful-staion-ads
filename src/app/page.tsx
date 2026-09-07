@@ -3,7 +3,8 @@ import { WhyChooseUsSection } from "@/components/sections/WhyChooseUsSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { ActiveSectionObserver } from "@/components/ActiveSectionObserver";
 import dynamic from "next/dynamic";
-// import { AboutTherapist } from "@/components/sections/AboutTherapist";
+import { AboutTherapist } from "@/components/sections/AboutTherapist";
+import { AboutSanghmitra } from "@/components/sections/AboutSanghmitra";
 
 const TestimonialsSection = dynamic(
   () =>
@@ -41,7 +42,8 @@ export default function Home() {
       <HeroSection />
       <TestimonialsSection />
       <ServicesSection />
-      {/* <AboutTherapist /> */}
+      <AboutTherapist />
+      <AboutSanghmitra />
       <WhyChooseUsSection />
       <StatsSection />
       <ContactSection />
