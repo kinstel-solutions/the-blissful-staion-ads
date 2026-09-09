@@ -1,3 +1,5 @@
+import posthog from 'posthog-js';
+
 declare global {
   interface Window {
     dataLayer?: any[];
@@ -31,7 +33,7 @@ export const trackGAEvent = (eventName: string, params?: Record<string, any>) =>
     const timeToConvert = Math.round((Date.now() - startTime) / 1000);
     const placement = `${window.location.pathname}${params?.element_id ? '#' + params.element_id : ''}`;
 
-    window.dataLayer.push({
+    const eventData = {
       event: eventName,
       event_time_iso: new Date().toISOString(),
       event_time_unix: Math.floor(Date.now() / 1000),
@@ -40,6 +42,15 @@ export const trackGAEvent = (eventName: string, params?: Record<string, any>) =>
       time_to_convert: timeToConvert,
       last_interaction: journey[journey.length - 1] || 'page_load',
       ...params
-    });
+    };
+
+    window.dataLayer.push(eventData);
+
+    try {
+      posthog.capture(eventName, eventData);
+    } catch {
+      // ignore if posthog is not initialized
+    }
   }
 };
+

@@ -7,6 +7,7 @@ import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 import { FloatingBookingWidget } from "@/components/FloatingBookingWidget";
 import Script from "next/script";
 import { CanonicalTag } from "@/components/CanonicalTag";
+import { PostHogProvider } from "./providers";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const cormorant = Cormorant_Garamond({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-cormorant" });
@@ -89,11 +90,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${outfit.variable} ${cormorant.variable} antialiased`}>
-        <Navbar />
-        {children}
-        <Footer />
-        <WhatsAppWidget />
-        <FloatingBookingWidget />
+        <PostHogProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <WhatsAppWidget />
+          <FloatingBookingWidget />
+        </PostHogProvider>
         <Script
           id="gtm-script"
           strategy="lazyOnload"
