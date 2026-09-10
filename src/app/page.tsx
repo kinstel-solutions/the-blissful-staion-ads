@@ -42,8 +42,8 @@ export default function Home() {
       <HeroSection />
       <TestimonialsSection />
       <ServicesSection />
-      <AboutTherapist />
-      <AboutSanghmitra />
+      {/* <AboutTherapist /> */}
+      {/* <AboutSanghmitra /> */}
       <WhyChooseUsSection />
       <StatsSection />
       <ContactSection />
