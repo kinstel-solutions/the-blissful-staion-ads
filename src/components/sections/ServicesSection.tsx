@@ -22,31 +22,64 @@ import {
   Rainbow,
 } from "lucide-react";
 
-const services = [
+interface ServiceItem {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  bullets?: string[];
+}
+
+const services: ServiceItem[] = [
+  {
+    icon: Brain,
+    title: "Anxiety",
+    description:
+      "Living with constant worry, panic, or a racing mind can feel exhausting, but you don't have to face it alone. With gentle, compassionate support, you can quiet the overthinking, feel safe in your body again, and rediscover calm — because it truly does get better.",
+    bullets: [
+      "Quieting endless 'what-if' thoughts, late-night overthinking, and worry loops",
+      "Soothing the physical side of panic — like a racing heart, restlessness, or tight chest",
+      "Gentle, patient support for social anxiety, everyday fears, and feeling overwhelmed",
+      "Simple, practical coping tools to help you feel grounded, in control, and hopeful again",
+    ],
+  },
+  {
+    icon: Heart,
+    title: "Relationships",
+    description:
+      "Expert psychological counseling to resolve interpersonal conflict, rebuild emotional safety, and cultivate healthy boundaries for couples, families, and individuals.",
+    bullets: [
+      "Couples, marital & family therapy for conflict resolution and deep intimacy",
+      "Attachment-focused care to break recurring toxic communication cycles",
+      "Assertive boundary setting, emotional safety & codependency recovery",
+      "Support navigating relationship transitions, heartbreak, separation, or divorce",
+    ],
+  },
+  {
+    icon: Compass,
+    title: "Career Counseling",
+    description:
+      "Psychologist-led career guidance to help you overcome workplace burnout, resolve career indecision, and align professional growth with personal strengths.",
+    bullets: [
+      "Psychological profiling of career aptitudes, personality traits, and values",
+      "Managing workplace burnout, imposter syndrome & performance anxiety",
+      "Clarity and strategic decision-making for career transitions and advancement",
+      "Sustainable work-life balance frameworks and executive assertiveness",
+    ],
+  },
   {
     icon: CloudRain,
     title: "Depression",
     description:
       "Compassionate, evidence-based care to help you rediscover joy and meaning in everyday life.",
   },
-  {
-    icon: Brain,
-    title: "Anxiety",
-    description:
-      "Practical tools and therapy to manage anxious thoughts, panic, and overthinking effectively.",
-  },
+
   {
     icon: Zap,
     title: "Trauma",
     description:
       "Trauma-informed therapy to help you process difficult experiences and reclaim a sense of safety.",
   },
-  {
-    icon: Heart,
-    title: "Relationships",
-    description:
-      "Helping individuals, couples and families build healthier connection, boundaries and communication.",
-  },
+
   {
     icon: Briefcase,
     title: "Stress",
@@ -95,12 +128,7 @@ const services = [
     description:
       "Mindfulness-based practices to cultivate present-moment awareness, calm, and emotional balance.",
   },
-  {
-    icon: Compass,
-    title: "Career Counseling",
-    description:
-      "Guidance and support to help you make informed decisions about your career path and professional growth.",
-  },
+
   {
     icon: Sparkles,
     title: "Personality development",
@@ -137,7 +165,7 @@ export function ServicesSection() {
         const idx = services.findIndex(
           (s) =>
             s.title.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-") ===
-            serviceId
+            serviceId,
         );
         if (idx !== -1) {
           setExpandedCards((prev) => ({ ...prev, [idx]: true }));
@@ -174,7 +202,10 @@ export function ServicesSection() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
           {services.map((service, idx) => {
-            const serviceId = service.title.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-");
+            const serviceId = service.title
+              .toLowerCase()
+              .replace(/ & /g, "-")
+              .replace(/ /g, "-");
             return (
               <div
                 key={idx}
@@ -191,8 +222,21 @@ export function ServicesSection() {
                       {service.title}
                     </h3>
                   </div>
-                  <div className={`mt-4 pt-4 border-t border-[#F4F9F5] text-[var(--text-light)] text-sm leading-relaxed md:block ${expandedCards[idx] ? "block" : "hidden"}`}>
-                    {service.description}
+                  <div
+                    className={`mt-4 pt-4 border-t border-[#F4F9F5] text-[var(--text-light)] text-sm leading-relaxed md:block ${expandedCards[idx] ? "block" : "hidden"}`}>
+                    <p>{service.description}</p>
+                    {service.bullets && (
+                      <ul className="mt-3 space-y-2 text-xs md:text-sm">
+                        {service.bullets.map((bullet, bIdx) => (
+                          <li
+                            key={bIdx}
+                            className="flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] mt-1.5 shrink-0 opacity-80" />
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
                 <button

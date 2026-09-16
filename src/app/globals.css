@@ -50,6 +50,49 @@
   100% { background-position: -100% 0; }
 }
 
+@keyframes wordRotateIn {
+  0% {
+    opacity: 0;
+    transform: translateY(60%);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes wordRotateOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60%);
+    filter: blur(4px);
+  }
+}
+
+.animate-word-in {
+  animation: wordRotateIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-word-out {
+  animation: wordRotateOut 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-word-in,
+  .animate-word-out {
+    animation: none;
+    transform: none;
+    filter: none;
+  }
+}
+
 .simmer-text {
   background: linear-gradient(
     90deg,

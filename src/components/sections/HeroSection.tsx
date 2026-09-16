@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import Image from "next/image";
 import { AlexButton } from "@/components/ui/AlexButton";
+import { RotatingWords } from "@/components/ui/RotatingWords";
 import { ChevronLeft, ChevronRight, Leaf } from "lucide-react";
 
 export function HeroSection() {
@@ -80,18 +81,29 @@ export function HeroSection() {
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-[64px] leading-[1.1] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[900px]">
-            Trusted Psychologist
-            <span className="simmer-text italic font-bold"> in Lucknow</span>
+          <h1 className="text-4xl md:text-5xl lg:text-[64px] leading-[1.15] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[900px]">
+            Expert Therapy for{" "}
+            <RotatingWords
+              words={[
+                "Anxiety",
+                "Depression",
+                "Relationships",
+                "Stress & Burnout",
+                // "ADHD & OCD",
+                // "Child Therapy",
+                "Career Counselling",
+              ]}
+            />
           </h1>
 
           <p className="text-lg md:text-xl text-[var(--text-light)] mb-8 max-w-[700px] leading-relaxed">
-            <span className="hidden md:inline">
-              Lucknow&apos;s trusted therapist and clinical psychologist
+            <span className="block">
+              Lucknow&apos;s Highly Rated therapist/clinical psychologist
               providing scientific, evidence-based care tailored to your unique
               mental health journey.{" "}
             </span>
-            Personalised, Scientific & Evidence-based therapy for{" "}
+
+            {/* Personalised, Scientific & Evidence-based therapy for{" "}
             <a
               href="#services"
               onClick={(e) => handleServiceClick(e, "anxiety")}
@@ -126,7 +138,7 @@ export function HeroSection() {
               className="underline hover:text-[var(--primary)] transition-colors font-medium">
               CBT
             </a>{" "}
-            & more.
+            & more. */}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
