@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="py-16 text-center border-t border-[#eee] text-[var(--text-light)] relative z-10 bg-[var(--bg-color)]">
+    <footer className="py-16 text-center border-t border-[rgba(0,0,0,0.06)] text-[var(--text-light)] relative z-10 bg-[#faf9ef]">
         <div className="container mx-auto px-8 max-w-[1200px]">
             <p className="mb-2">
               <a href="tel:+919793743769" onClick={() => trackGAEvent('phone_call', { element_id: 'footer_phone_click' })} className="hover:text-[var(--primary)] transition-colors">97937 43769</a> | contact.tbfst@gmail.com

@@ -31,9 +31,6 @@ const features = [
 export function WhyChooseUsSection() {
   return (
     <section className="bg-white py-[40px] md:py-[140px] relative overflow-hidden">
-      {/* Decorative corner element */}
-      <div className="absolute -bottom-20 -left-20 w-[40vw] h-[40vw] bg-[radial-gradient(circle,rgba(33,77,62,0.02)_0%,rgba(252,250,255,0)_70%)] -z-0"></div>
-
       <div className="container mx-auto px-6 md:px-8 max-w-[1200px] relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-32">

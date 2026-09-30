@@ -2,7 +2,7 @@ import React from "react";
 import { Heart, ShieldCheck, Lock, Star } from "lucide-react";
 
 const stats = [
-  { value: "85+", label: "Happy Clients", icon: Heart },
+  { value: "200+", label: "Happy Clients", icon: Heart },
   { value: "1-on-1", label: "Dedicated Care", icon: ShieldCheck },
   { value: "100%", label: "Confidentiality", icon: Lock },
   { value: "4.9/5", label: "Client Satisfaction", icon: Star },
@@ -10,17 +10,14 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section className="relative py-[40px] md:py-[120px] overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-[radial-gradient(circle,rgba(33,77,62,0.03)_0%,rgba(252,250,255,0)_70%)] -z-10"></div>
-
+    <section className="bg-[#faf9ef] py-[40px] md:py-[120px] overflow-hidden">
       <div className="container mx-auto px-6 md:px-8 max-w-[1200px]">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-12">
           {stats.map((stat, idx) => (
             <div
               key={idx}
               className="group relative text-center">
-              <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white shadow-[0_10px_30px_rgba(33,77,62,0.06)] border border-[rgba(33,77,62,0.05)] text-[var(--primary)] transition-all duration-500 group-hover:-translate-y-2 group-hover:bg-[var(--primary)] group-hover:text-white">
+              <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.04)] border border-[rgba(0,0,0,0.06)] text-[var(--primary)] transition-all duration-500 group-hover:-translate-y-2 group-hover:bg-[var(--primary)] group-hover:text-white">
                 <stat.icon className="w-6 h-6" />
               </div>
 

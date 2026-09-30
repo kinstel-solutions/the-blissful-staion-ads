@@ -13,19 +13,29 @@ export async function POST(req: Request) {
   }
 
   try {
-    const { name, phone, age, concern, email, message, isPriority } =
+    const { name, phone, concern, message, email, isPriority, age } =
       await req.json();
 
+    const displayName = name?.trim() || "Not provided";
+    const leadSubjectName = name?.trim() ? name.trim() : phone || "New Client";
+    const subjectPrefix = isPriority ? "[Online Session Request] " : "";
+    const subject = `${subjectPrefix}New Lead: ${leadSubjectName} (${concern || "Counseling"})`;
+
     // 1. Send Notification to Clinic
-    const clinicEmailPromise = resend.emails.send({
+    const clinicEmailOptions: {
+      from: string;
+      to: string[];
+      subject: string;
+      html: string;
+      replyTo?: string;
+    } = {
       from: "The Blissful Station Website <inquiry@theblissfulstation.com>",
       to: ["kinstelsolutions@gmail.com", "contact.tbfst@gmail.com"],
-      subject: `${isPriority ? "[Online Session Request] " : ""}New Lead: ${name} (${concern})`,
-      replyTo: email,
+      subject: subject,
       html: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 10px; overflow: hidden;">
-          <div style="background-color: ${isPriority ? "#214D3E" : "#214D3E"}; color: white; padding: 20px; text-align: center;">
-            <h1 style="margin: 0; font-size: 24px;">${isPriority ? "New Lead(Online Session)" : "New Lead Captured"}</h1>
+          <div style="background-color: #214D3E; color: white; padding: 20px; text-align: center;">
+            <h1 style="margin: 0; font-size: 24px;">New Lead Captured</h1>
           </div>
           <div style="padding: 30px;">
             <p style="font-size: 16px;">You have received a new consultation request from your landing page.</p>
@@ -34,37 +44,51 @@ export async function POST(req: Request) {
                 isPriority
                   ? `
               <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%; color: #d32f2f;">Booking Request(Preference):</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; color: #d32f2f;"> for Online Therapy Session</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%; color: #214D3E;">Session Preference:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; color: #214D3E;">Online Therapy Session</td>
               </tr>
               `
                   : ""
               }
               <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%;">Full Name:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${name}</td>
-              </tr>
-              <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Email Address:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${email}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold; width: 40%;">Name:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${displayName}</td>
               </tr>
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Phone / WhatsApp:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${phone}</td>
-              </tr>
-              <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Age:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${age || "Not provided"}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">
+                  <a href="tel:${phone}" style="color: #214D3E; font-weight: bold; text-decoration: none;">${phone}</a>
+                </td>
               </tr>
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Primary Concern:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${concern}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${concern || "Not specified"}</td>
               </tr>
+              ${
+                email
+                  ? `
+              <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Email:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${email}</td>
+              </tr>
+              `
+                  : ""
+              }
+              ${
+                age
+                  ? `
+              <tr>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Age:</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee; word-break: break-word;">${age}</td>
+              </tr>
+              `
+                  : ""
+              }
               ${
                 message
                   ? `
               <tr>
-                <td colspan="2" style="padding: 10px 10px 0 10px; font-weight: bold; width: 100%;">Additional Concerns:</td>
+                <td colspan="2" style="padding: 10px 10px 0 10px; font-weight: bold; width: 100%;">Description / Notes:</td>
               </tr>
               <tr>
                 <td colspan="2" style="padding: 0 10px 10px 10px; border-bottom: 1px solid #eee; word-break: break-word; white-space: pre-wrap;">${message}</td>
@@ -79,42 +103,50 @@ export async function POST(req: Request) {
           </div>
         </div>
       `,
-    });
+    };
 
-    // 2. Send Confirmation to User
-    const userEmailPromise = resend.emails.send({
-      from: "The Blissful Station <inquiry@theblissfulstation.com>",
-      to: [email],
-      subject: "We Have Received Your Request - The Blissful Station",
-      html: `
-        <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-          <div style="background-color: #214D3E; color: white; padding: 40px 20px; text-align: center;">
-            <h1 style="margin: 0; font-size: 28px; font-family: serif;">The Blissful Station</h1>
-            <p style="margin-top: 10px; opacity: 0.9; font-size: 16px;">Expert Psychological Counseling</p>
-          </div>
-          <div style="padding: 40px 30px;">
-            <h2 style="color: #214D3E; margin-top: 0;">Hello ${name},</h2>
-            <p style="font-size: 16px;">Thank you for reaching out to us. We have received your consultation request regarding <strong>${concern}</strong>.</p>
-            <p style="font-size: 16px;">Our team is reviewing your details, and a therapist will contact you within the next <strong>2 to 4 hours</strong> to schedule your initial session.</p>
-           
-            <div style="margin: 30px 0; padding: 20px; background-color: #fcfcfc; border-left: 4px solid #B49463;">
-              <p style="margin: 0; font-style: italic; color: #555;">"Your healing journey is a marathon, not a sprint. We are honored to walk this path with you."</p>
+    if (email && typeof email === "string" && email.trim()) {
+      clinicEmailOptions.replyTo = email.trim();
+    }
+
+    const emailPromises: Promise<any>[] = [
+      resend.emails.send(clinicEmailOptions),
+    ];
+
+    // 2. Send Confirmation to User only if valid email is provided
+    if (email && typeof email === "string" && email.trim()) {
+      emailPromises.push(
+        resend.emails.send({
+          from: "The Blissful Station <inquiry@theblissfulstation.com>",
+          to: [email.trim()],
+          subject: "We Have Received Your Request - The Blissful Station",
+          html: `
+            <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+              <div style="background-color: #214D3E; color: white; padding: 40px 20px; text-align: center;">
+                <h1 style="margin: 0; font-size: 28px; font-family: serif;">The Blissful Station</h1>
+                <p style="margin-top: 10px; opacity: 0.9; font-size: 16px;">Expert Psychological Counseling</p>
+              </div>
+              <div style="padding: 40px 30px;">
+                <h2 style="color: #214D3E; margin-top: 0;">Hello ${name ? name : "there"},</h2>
+                <p style="font-size: 16px;">Thank you for reaching out to us. We have received your consultation request regarding <strong>${concern || "Counseling"}</strong>.</p>
+                <p style="font-size: 16px;">Our team is reviewing your details, and a therapist will contact you within the next <strong>2 to 4 hours</strong> to schedule your initial session.</p>
+               
+                <div style="margin: 30px 0; padding: 20px; background-color: #fcfcfc; border-left: 4px solid #B49463;">
+                  <p style="margin: 0; font-style: italic; color: #555;">"Your healing journey is a marathon, not a sprint. We are honored to walk this path with you."</p>
+                </div>
+                <p style="font-size: 16px;">If you have any urgent queries, feel free to reply to this email or call us at <a href="tel:+919793743769" style="color: #214D3E; font-weight: bold; text-decoration: none;">+91 97937 43769</a>.</p>
+                <p style="margin-top: 30px; font-size: 16px;">Warm regards,<br><strong>Team Blissful Station</strong></p>
+              </div>
+              <div style="background-color: #f9f9f9; padding: 20px; text-align: center; border-top: 1px solid #eee;">
+                <p style="margin: 0; font-size: 12px; color: #999;">Vikalp Khand, Gomti Nagar, Lucknow, UP 226010</p>
+              </div>
             </div>
-            <p style="font-size: 16px;">If you have any urgent queries, feel free to reply to this email or call us at <a href="tel:+919793743769" style="color: #214D3E; font-weight: bold; text-decoration: none;">+91 97937 43769</a>.</p>
-            <p style="margin-top: 30px; font-size: 16px;">Warm regards,<br><strong>Team Blissful Station</strong></p>
-          </div>
-          <div style="background-color: #f9f9f9; padding: 20px; text-align: center; border-top: 1px solid #eee;">
-            <p style="margin: 0; font-size: 12px; color: #999;">Vikalp Khand, Gomti Nagar, Lucknow, UP 226010</p>
-          </div>
-        </div>
-      `,
-    });
+          `,
+        }),
+      );
+    }
 
-    // Wait for both emails to send
-    const [clinicRes, userRes] = await Promise.all([
-      clinicEmailPromise,
-      userEmailPromise,
-    ]);
+    const [clinicRes] = await Promise.all(emailPromises);
 
     if (clinicRes.error) {
       console.error("Clinic Email Error:", clinicRes.error);

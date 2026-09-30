@@ -1,24 +1,55 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+  useSyncExternalStore,
+} from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AlexButton } from "@/components/ui/AlexButton";
 import { RotatingWords } from "@/components/ui/RotatingWords";
-import { ChevronLeft, ChevronRight, Leaf } from "lucide-react";
+import { ChevronLeft, ChevronRight, Leaf, X, ZoomIn } from "lucide-react";
+
+const emptySubscribe = () => () => {};
+
+const heroImages = [
+  { src: "/new_Images/tbs_entrance.jpeg", alt: "Entrance" },
+  {
+    src: "/new_Images/tbs_reception-2.jpeg",
+    alt: "Reception Area",
+  },
+  {
+    src: "/new_Images/tbs_office-area.jpeg",
+    alt: "Clinical Office Space",
+  },
+  {
+    src: "/new_Images/tbs_therapy-room.jpeg",
+    alt: "Therapy Room",
+  },
+  {
+    src: "/assets/therapy-room-wide.jpg",
+    alt: "Therapy Room Wide",
+  },
+];
 
 export function HeroSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const autoScrollTimer = useRef<NodeJS.Timeout | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const handleServiceClick = (e: React.MouseEvent, serviceId: string) => {
-    e.preventDefault();
-    window.dispatchEvent(
-      new CustomEvent("expand-service", { detail: { serviceId } }),
-    );
-  };
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null,
+  );
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
 
-  const startTimer = () => {
+  const startTimer = useCallback(() => {
     if (autoScrollTimer.current) clearInterval(autoScrollTimer.current);
     autoScrollTimer.current = setInterval(() => {
       if (scrollRef.current) {
@@ -30,14 +61,14 @@ export function HeroSection() {
         }
       }
     }, 3000);
-  };
+  }, []);
 
-  const stopTimer = () => {
+  const stopTimer = useCallback(() => {
     if (autoScrollTimer.current) {
       clearInterval(autoScrollTimer.current);
       autoScrollTimer.current = null;
     }
-  };
+  }, []);
 
   const handleScroll = (direction: "left" | "right") => {
     stopTimer();
@@ -53,198 +84,319 @@ export function HeroSection() {
     timeoutRef.current = setTimeout(startTimer, 5000);
   };
 
+  const openLightbox = (index: number) => {
+    stopTimer();
+    setSelectedImageIndex(index);
+  };
+
+  const closeLightbox = useCallback(() => {
+    setSelectedImageIndex(null);
+    startTimer();
+  }, [startTimer]);
+
+  const goToPrev = useCallback(() => {
+    setSelectedImageIndex((prev) =>
+      prev !== null ? (prev === 0 ? heroImages.length - 1 : prev - 1) : null,
+    );
+  }, []);
+
+  const goToNext = useCallback(() => {
+    setSelectedImageIndex((prev) =>
+      prev !== null ? (prev === heroImages.length - 1 ? 0 : prev + 1) : null,
+    );
+  }, []);
+
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (selectedImageIndex === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeLightbox();
+      } else if (e.key === "ArrowLeft") {
+        goToPrev();
+      } else if (e.key === "ArrowRight") {
+        goToNext();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImageIndex, closeLightbox, goToPrev, goToNext]);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedImageIndex !== null) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [selectedImageIndex]);
+
   useEffect(() => {
     startTimer();
     return () => {
       stopTimer();
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, []);
+  }, [startTimer, stopTimer]);
 
   return (
     <section
       id="hero"
-      className="relative overflow-hidden pt-[80px] md:pt-[190px] pb-[6vw] md:pb-[15vw] container mx-auto px-6 md:px-8 max-w-[1300px]">
-      <div className="absolute bottom-0 right-0 w-[50vw] h-[50vw] bg-[radial-gradient(circle,rgba(33,77,62,0.03)_0%,rgba(252,250,255,0)_70%)] -z-10"></div>
+      className="relative overflow-hidden pt-[80px] md:pt-[190px] pb-[6vw] md:pb-[15vw] bg-[#faf9ef]">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1300px]">
+        <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center">
+            <div className="flex flex-wrap justify-center gap-2.5 mb-4">
+              <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
+                RCI Registered Clinical Psychologist
+              </div>
+              <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
+                100% Confidential
+              </div>
+              <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
+                Therapy Starting @₹799
+              </div>
+            </div>
 
-      <div className="flex flex-col items-center text-center">
-        <div className="flex flex-col items-center">
-          <div className="flex flex-wrap justify-center gap-2.5 mb-4">
-            <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
-              RCI Registered Clinical Psychologist
-            </div>
-            <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
-              Online Therapy Available
-            </div>
-            <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
-              Therapy Starting @₹799
+            <h1 className="text-4xl text-center md:text-5xl lg:text-[64px] leading-[1.15] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[900px]">
+              Expert Therapy for
+              <span className="block text-[var(--primary)]">
+                <RotatingWords
+                  words={[
+                    "Anxiety",
+                    // "Depression",
+                    "Relationships",
+                    "Stress & Burnout",
+                    // "ADHD & OCD",
+                    // "Career Counselling",
+                    "your concerns",
+                  ]}
+                />
+              </span>
+            </h1>
+
+            <p className="text-lg md:text-xl text-[var(--text-light)] mb-8 max-w-[700px] leading-relaxed">
+              <span className="block">
+                Lucknow&apos;s Highly Rated therapist/clinical psychologist
+                providing scientific, evidence-based care tailored to your
+                unique mental health journey.{" "}
+              </span>
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+              <AlexButton
+                href="#booking-form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.dispatchEvent(new CustomEvent("focus-booking-form"));
+                }}
+                size="md"
+                className="shadow-lg hover:shadow-xl">
+                Inquire Now
+              </AlexButton>
+              <AlexButton
+                href="#booking-form"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.dispatchEvent(
+                    new CustomEvent("priority-booking-click"),
+                  );
+                }}
+                size="md"
+                className="alex-button-secondary shadow-lg hover:shadow-xl">
+                Book Online Session
+              </AlexButton>
             </div>
           </div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-[64px] leading-[1.15] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[900px]">
-            Expert Therapy for{" "}
-            <RotatingWords
-              words={[
-                "Anxiety",
-                "Depression",
-                "Relationships",
-                "Stress & Burnout",
-                // "ADHD & OCD",
-                // "Child Therapy",
-                "Career Counselling",
-              ]}
-            />
-          </h1>
+          <div className="w-full mt-8 md:mt-20 relative group">
+            {/* Scroll Container */}
+            <div
+              ref={scrollRef}
+              onMouseEnter={stopTimer}
+              onMouseLeave={startTimer}
+              onTouchStart={stopTimer}
+              onTouchEnd={startTimer}
+              className="w-full rounded-[12px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-x-auto flex snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex w-max h-[300px] md:h-[450px] gap-4 md:gap-6">
+                {heroImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => openLightbox(idx)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        openLightbox(idx);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Click to expand image: ${img.alt}`}
+                    className="shrink-0 w-[85vw] md:w-[500px] lg:w-[600px] h-full relative snap-center group/card rounded-[20px] overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-transform">
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="(max-width: 768px) 85vw, (max-width: 1024px) 500px, 600px"
+                      className="object-cover transition-transform duration-500 group-hover/card:scale-105"
+                      draggable="false"
+                      priority={idx === 0}
+                    />
 
-          <p className="text-lg md:text-xl text-[var(--text-light)] mb-8 max-w-[700px] leading-relaxed">
-            <span className="block">
-              Lucknow&apos;s Highly Rated therapist/clinical psychologist
-              providing scientific, evidence-based care tailored to your unique
-              mental health journey.{" "}
-            </span>
+                    {/* "Click to expand" Badge */}
+                    <div className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 backdrop-blur-md text-white text-xs font-medium px-3 py-1.5 rounded-full flex items-center gap-1.5 opacity-90 md:opacity-0 group-hover/card:opacity-100 transition-all duration-300 shadow-md pointer-events-none z-10">
+                      <ZoomIn className="w-3.5 h-3.5" />
+                      <span>Click to expand</span>
+                    </div>
 
-            {/* Personalised, Scientific & Evidence-based therapy for{" "}
-            <a
-              href="#services"
-              onClick={(e) => handleServiceClick(e, "anxiety")}
-              className="underline hover:text-[var(--primary)] transition-colors font-medium">
-              Anxiety
-            </a>
-            ,{" "}
-            <a
-              href="#services"
-              onClick={(e) => handleServiceClick(e, "depression")}
-              className="underline hover:text-[var(--primary)] transition-colors font-medium">
-              Depression
-            </a>
-            ,{" "}
-            <a
-              href="#services"
-              onClick={(e) => handleServiceClick(e, "adhd-asd")}
-              className="underline hover:text-[var(--primary)] transition-colors font-medium">
-              ADHD
-            </a>
-            ,{" "}
-            <a
-              href="#services"
-              onClick={(e) => handleServiceClick(e, "child-therapy")}
-              className="underline hover:text-[var(--primary)] transition-colors font-medium">
-              Child therapy
-            </a>
-            ,{" "}
-            <a
-              href="#services"
-              onClick={(e) => handleServiceClick(e, "cbt")}
-              className="underline hover:text-[var(--primary)] transition-colors font-medium">
-              CBT
-            </a>{" "}
-            & more. */}
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-            <AlexButton
-              href="#booking-form"
-              onClick={(e) => {
-                e.preventDefault();
-                window.dispatchEvent(new CustomEvent("focus-booking-form"));
-              }}
-              size="md"
-              className="shadow-lg hover:shadow-xl">
-              Consult Now
-            </AlexButton>
-            <AlexButton
-              href="#booking-form"
-              onClick={(e) => {
-                e.preventDefault();
-                window.dispatchEvent(new CustomEvent("priority-booking-click"));
-              }}
-              size="md"
-              className="alex-button-secondary shadow-lg hover:shadow-xl">
-              Book Online Session
-            </AlexButton>
-          </div>
-        </div>
-
-        <div className="w-full mt-8 md:mt-20 relative group">
-          {/* Scroll Container */}
-          <div
-            ref={scrollRef}
-            onMouseEnter={stopTimer}
-            onMouseLeave={startTimer}
-            onTouchStart={stopTimer}
-            onTouchEnd={startTimer}
-            className="w-full rounded-[12px] shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-x-auto flex snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex w-max h-[300px] md:h-[450px] gap-4 md:gap-6">
-              {[
-                { src: "/new_Images/tbs_entrance.jpeg", alt: "Entrance" },
-                {
-                  src: "/new_Images/tbs_reception-2.jpeg",
-                  alt: "Reception Area",
-                },
-                {
-                  src: "/new_Images/tbs_office-area.jpeg",
-                  alt: "Clinical Office Space",
-                },
-                {
-                  src: "/new_Images/tbs_therapy-room.jpeg",
-                  alt: "Therapy Room",
-                },
-                {
-                  src: "/assets/therapy-room-wide.jpg",
-                  alt: "Therapy Room Wide",
-                },
-              ].map((img, idx) => (
-                <div
-                  key={idx}
-                  className="shrink-0 w-[85vw] md:w-[500px] lg:w-[600px] h-full relative snap-center group/card rounded-[20px] overflow-hidden">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 500px, 600px"
-                    className="object-cover"
-                    draggable="false"
-                    priority={idx === 0}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(33,77,62,0.9)] via-transparent to-transparent opacity-80 md:opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 flex items-end p-6">
-                    <span className="text-white font-cormorant text-2xl font-medium tracking-wide drop-shadow-md">
-                      {img.alt}
-                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[rgba(33,77,62,0.9)] via-transparent to-transparent opacity-80 md:opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 flex items-end justify-between p-6 pointer-events-none">
+                      <span className="text-white font-cormorant text-2xl font-medium tracking-wide drop-shadow-md">
+                        {img.alt}
+                      </span>
+                      <span className="hidden md:flex items-center gap-1 text-white/90 text-xs font-outfit uppercase tracking-wider bg-white/20 backdrop-blur-sm px-2.5 py-1 rounded-full">
+                        <ZoomIn className="w-3 h-3" />
+                        Expand
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={() => handleScroll("left")}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/75 text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white p-1 rounded-full shadow-lg transition-all duration-300 z-20 md:opacity-0 group-hover:opacity-100"
-            aria-label="Previous image">
-            <ChevronLeft size={24} />
-          </button>
-          <button
-            onClick={() => handleScroll("right")}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/75   text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white p-1 rounded-full shadow-lg transition-all duration-300 z-20 md:opacity-0 group-hover:opacity-100"
-            aria-label="Next image">
-            <ChevronRight size={24} />
-          </button>
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => handleScroll("left")}
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/75 text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white p-1 rounded-full shadow-lg transition-all duration-300 z-20 md:opacity-0 group-hover:opacity-100 cursor-pointer"
+              aria-label="Previous image">
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              onClick={() => handleScroll("right")}
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/75 text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white p-1 rounded-full shadow-lg transition-all duration-300 z-20 md:opacity-0 group-hover:opacity-100 cursor-pointer"
+              aria-label="Next image">
+              <ChevronRight size={24} />
+            </button>
 
-          <div className="hidden md:flex absolute -bottom-8 left-10 bg-[rgba(255,255,255,0.9)] backdrop-blur-[15px] p-6 rounded-[24px] border border-[rgba(33,77,62,0.1)] shadow-[0_15px_45px_rgba(33,77,62,0.1)] items-center gap-5 z-10 transition-transform hover:scale-105 duration-300">
-            <div className="w-12 h-12 bg-[var(--primary)] text-white rounded-full flex items-center justify-center">
-              <Leaf className="w-6 h-6" />
-            </div>
-            <div className="text-left">
-              <strong className="block text-[var(--primary)] font-cormorant text-xl font-semibold leading-tight">
-                Expert Care
-              </strong>
-              <p className="text-[var(--text-light)] text-sm">
-                Verified Psychologists
-              </p>
+            <div className="hidden md:flex absolute -bottom-8 left-10 bg-[rgba(255,255,255,0.9)] backdrop-blur-[15px] p-6 rounded-[24px] border border-[rgba(33,77,62,0.1)] shadow-[0_15px_45px_rgba(33,77,62,0.1)] items-center gap-5 z-10 transition-transform hover:scale-105 duration-300 pointer-events-none">
+              <div className="w-12 h-12 bg-[var(--primary)] text-white rounded-full flex items-center justify-center">
+                <Leaf className="w-6 h-6" />
+              </div>
+              <div className="text-left">
+                <strong className="block text-[var(--primary)] font-cormorant text-xl font-semibold leading-tight">
+                  Expert Care
+                </strong>
+                <p className="text-[var(--text-light)] text-sm">
+                  Verified Psychologists
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Lightbox / Expanded View Modal */}
+      {isClient &&
+        selectedImageIndex !== null &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[9999] bg-black/90 backdrop-blur-md flex flex-col justify-between p-4 md:p-6 select-none animate-fadeIn"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Expanded Image View"
+            onClick={closeLightbox}>
+            {/* Top Header */}
+            <div
+              className="flex items-center justify-between text-white w-full max-w-6xl mx-auto z-10"
+              onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center gap-3">
+                <span className="font-cormorant text-xl md:text-2xl font-medium tracking-wide">
+                  {heroImages[selectedImageIndex].alt}
+                </span>
+                <span className="text-xs md:text-sm text-white/70 bg-white/10 px-2.5 py-1 rounded-full font-mono">
+                  {selectedImageIndex + 1} / {heroImages.length}
+                </span>
+              </div>
+
+              <button
+                onClick={closeLightbox}
+                className="p-2 rounded-full bg-white/10 hover:bg-white/25 text-white transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50"
+                aria-label="Close expanded view (Esc)"
+                title="Close (Esc)">
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Center Image with Previous/Next Controls */}
+            <div
+              className="relative flex-1 flex items-center justify-center w-full max-w-6xl mx-auto my-2 md:my-4"
+              onClick={(e) => e.stopPropagation()}>
+              {/* Prev button */}
+              <button
+                onClick={goToPrev}
+                className="absolute left-2 md:left-2 z-20 p-2.5 md:p-3 rounded-full bg-black/60 hover:bg-black/85 text-white backdrop-blur-sm border border-white/10 transition-all duration-200 hover:scale-110 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 shadow-lg"
+                aria-label="Previous image"
+                title="Previous (Left arrow)">
+                <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+              </button>
+
+              {/* Main Image */}
+              <div className="relative w-full h-[60vh] sm:h-[68vh] md:h-[74vh] rounded-xl overflow-hidden shadow-2xl">
+                <Image
+                  src={heroImages[selectedImageIndex].src}
+                  alt={heroImages[selectedImageIndex].alt}
+                  fill
+                  sizes="(max-width: 1200px) 95vw, 1200px"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              {/* Next button */}
+              <button
+                onClick={goToNext}
+                className="absolute right-2 md:right-2 z-20 p-2.5 md:p-3 rounded-full bg-black/60 hover:bg-black/85 text-white backdrop-blur-sm border border-white/10 transition-all duration-200 hover:scale-110 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white/50 shadow-lg"
+                aria-label="Next image"
+                title="Next (Right arrow)">
+                <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+              </button>
+            </div>
+
+            {/* Bottom Bar: Thumbnails & Keyboard Hint */}
+            <div
+              className="flex flex-col items-center gap-2 w-full max-w-6xl mx-auto z-10"
+              onClick={(e) => e.stopPropagation()}>
+              <div className="flex items-center justify-center gap-2 overflow-x-auto py-1 max-w-full">
+                {heroImages.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setSelectedImageIndex(idx)}
+                    className={`relative w-12 h-12 md:w-16 md:h-14 rounded-lg overflow-hidden border-2 transition-all duration-200 shrink-0 cursor-pointer ${
+                      selectedImageIndex === idx
+                        ? "border-white scale-105 shadow-md shadow-black/50 ring-2 ring-white/50"
+                        : "border-white/20 opacity-50 hover:opacity-90"
+                    }`}
+                    aria-label={`Jump to ${img.alt}`}>
+                    <Image
+                      src={img.src}
+                      alt={img.alt}
+                      fill
+                      sizes="64px"
+                      className="object-cover"
+                    />
+                  </button>
+                ))}
+              </div>
+              <p className="hidden md:block text-[11px] text-white/50 tracking-wider uppercase font-outfit mt-1">
+                Use Arrow Keys ← → to navigate • Esc or click outside to close
+              </p>
+            </div>
+          </div>,
+          document.body,
+        )}
     </section>
   );
 }

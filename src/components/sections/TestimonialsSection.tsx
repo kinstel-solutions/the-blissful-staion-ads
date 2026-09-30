@@ -60,7 +60,7 @@ const testimonials = [
 
 function ReviewCard({ t }: { t: (typeof testimonials)[0] }) {
   return (
-    <div className="shrink-0 bg-[var(--bg-color)] p-6 md:p-7 rounded-[24px] flex flex-col justify-between border border-[rgba(33,77,62,0.06)] shadow-[0_5px_30px_rgba(0,0,0,0.04)] select-none snap-center transition-all duration-300 hover:shadow-[0_10px_35px_rgba(33,77,62,0.08)] w-[290px] sm:w-[320px] md:w-[350px] min-h-[250px]">
+    <div className="shrink-0 bg-[#faf9ef] p-6 md:p-7 rounded-[24px] flex flex-col justify-between border border-[rgba(0,0,0,0.06)] shadow-[0_2px_12px_rgba(0,0,0,0.03)] select-none snap-center transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] w-[290px] sm:w-[320px] md:w-[350px] min-h-[250px]">
       <div>
         <div className="text-yellow-400 text-lg tracking-widest mb-3">
           ★★★★★
@@ -180,7 +180,7 @@ export function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="bg-white py-[30px] md:py-[100px] overflow-hidden">
+      className="bg-white py-[40px] md:py-[100px] overflow-hidden">
       {/* Header */}
       <div className="text-center max-w-[600px] mx-auto mb-6 md:mb-14 px-6 md:px-8">
         <h2 className="text-3xl md:text-4xl font-cormorant font-semibold text-[var(--primary)] mb-3 md:mb-4">

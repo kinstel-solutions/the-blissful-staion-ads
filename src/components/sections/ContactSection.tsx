@@ -8,8 +8,9 @@ export function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-[30px] md:py-[100px] container mx-auto px-6 md:px-8 max-w-[1200px]">
-      <div className="bg-white rounded-[30px] md:rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.05)] grid grid-cols-1 md:grid-cols-2 border border-[var(--glass-border)] relative">
+      className="bg-white py-[40px] md:py-[100px]">
+      <div className="container mx-auto px-6 md:px-8 max-w-[1200px]">
+        <div className="bg-[#faf9ef] rounded-[30px] md:rounded-[40px] shadow-[0_12px_40px_rgba(0,0,0,0.04)] grid grid-cols-1 md:grid-cols-2 border border-[rgba(0,0,0,0.06)] relative overflow-hidden">
         <div className="p-8 md:p-12 lg:p-20 flex flex-col justify-center">
           <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[11px] font-bold tracking-[1px] px-3 py-1 rounded-full uppercase mb-6 w-fit">
             Confidential Consultation
@@ -71,10 +72,11 @@ export function ContactSection() {
           </div>
         </div>
 
-        <div className="p-8 md:p-12 lg:p-20 bg-[var(--bg-color)] rounded-b-[30px] md:rounded-b-none md:rounded-r-[40px]">
+        <div className="p-8 md:p-12 lg:p-20 bg-white rounded-b-[30px] md:rounded-b-none md:rounded-r-[40px]">
           <ContactForm />
         </div>
       </div>
-    </section>
+    </div>
+  </section>
   );
 }

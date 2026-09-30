@@ -188,7 +188,7 @@ export function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-[var(--bg-color)] py-[30px] md:py-[100px]">
+      className="bg-[#faf9ef] py-[40px] md:py-[100px]">
       <div className="container mx-auto px-6 md:px-8 max-w-[1200px]">
         <div className="text-center max-w-[600px] mx-auto mb-6 md:mb-16">
           <h2 className="text-3xl md:text-4xl font-cormorant font-semibold text-[var(--primary)] mb-4">
@@ -210,7 +210,7 @@ export function ServicesSection() {
               <div
                 key={idx}
                 id={serviceId}
-                className={`bg-white p-4 rounded-[22px] transition-all duration-300 border border-[rgba(33,77,62,0.05)] shadow-[0_4px_12px_rgba(33,77,62,0.01)] hover:border-[var(--accent)] hover:shadow-[0_8px_30px_rgba(33,77,62,0.06)] hover:-translate-y-1 group flex flex-col justify-between scroll-mt-28 ${
+                className={`bg-white p-4 rounded-[22px] transition-all duration-300 border border-[rgba(0,0,0,0.06)] shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-[var(--primary)] hover:shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:-translate-y-1 group flex flex-col justify-between scroll-mt-28 ${
                   !isExpanded && idx >= 4 ? "hidden md:flex" : "flex"
                 }`}>
                 <div>

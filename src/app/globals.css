@@ -11,13 +11,14 @@
     --primary-light: #2d6653;
     --secondary: #EAF4F3; /* Light Sage Green */
     --accent: #F4C7A1; /* Peach Accent */
-    --bg-color: #F8FAF9; /* Off-white Cream */
-    --text-dark: #1a1a1a;
-    --text-light: #4a5a54;
-    --white: #ffffff;
-    --glass-bg: rgba(255, 255, 255, 0.8);
-    --glass-border: rgba(33, 77, 62, 0.1);
-    --shadow: 0 10px 40px rgba(33, 77, 62, 0.08);
+    --bg-color: #faf9ef; /* Warm matte tone */
+    --white: #ffffff; /* Pure White */
+    --surface-color: #ffffff; /* Clean Pure White Surface */
+    --text-dark: #111111; /* Deep Black for high legibility */
+    --text-light: #484848; /* Matte Charcoal Gray */
+    --glass-bg: rgba(250, 249, 239, 0.9);
+    --glass-border: rgba(0, 0, 0, 0.07);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
@@ -110,19 +111,10 @@
 }
 
 .alex-button {
-  background: linear-gradient(
-    90deg,
-    var(--primary) 0%,
-    var(--primary) 40%,
-    #33856a 50%,
-    var(--primary) 60%,
-    var(--primary) 100%
-  );
-  background-size: 200% 100%;
+  background: var(--primary);
   border: 1px solid var(--primary);
   color: white;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  animation: simmer 3s ease-in-out infinite;
 }
 
 .alex-button:hover {

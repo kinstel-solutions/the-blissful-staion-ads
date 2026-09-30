@@ -9,29 +9,36 @@ import {
   CheckCircle2,
   User,
   Phone as PhoneIcon,
-  Calendar,
   HelpCircle,
   ChevronDown,
   MessageSquare,
-  Mail,
   AlertCircle,
   Lock,
 } from "lucide-react";
 import { trackGAEvent } from "@/utils/analytics";
 
+const cleanPhone = (val: string) => {
+  let cleaned = val.replace(/\D/g, "");
+  if (cleaned.length === 12 && cleaned.startsWith("91")) {
+    cleaned = cleaned.slice(2);
+  } else if (cleaned.length === 11 && cleaned.startsWith("0")) {
+    cleaned = cleaned.slice(1);
+  }
+  return cleaned;
+};
+
 const formSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  phone: z.string().regex(/^[6-9]\d{9}$/, "Enter a valid 10-digit number"),
-  email: z
+  name: z.string().optional(),
+  phone: z
     .string()
-    .min(1, "Email is required")
-    .email("Enter a valid email address"),
-  age: z
-    .string()
-    .optional()
-    .refine((val) => !val || (parseInt(val) >= 1 && parseInt(val) <= 120), {
-      message: "Enter a valid age (1-120)",
-    }),
+    .min(1, "Phone number is required")
+    .refine(
+      (val) => {
+        const cleaned = cleanPhone(val);
+        return cleaned.length === 10 && /^[6-9]/.test(cleaned);
+      },
+      { message: "Enter a valid 10-digit phone number" },
+    ),
   concern: z.string().min(1, "Please select a concern"),
   message: z.string().optional(),
   isPriority: z.boolean().optional(),
@@ -67,7 +74,10 @@ export function ContactForm() {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      name: "",
+      phone: "",
       concern: "",
+      message: "",
       isPriority: false,
     },
   });
@@ -112,7 +122,6 @@ export function ContactForm() {
   useEffect(() => {
     const handlePriorityClick = () => {
       setValue("isPriority", true);
-      // Wait a short moment to ensure states align, then dispatch focus event
       setTimeout(() => {
         window.dispatchEvent(new CustomEvent("focus-booking-form"));
       }, 50);
@@ -127,19 +136,29 @@ export function ContactForm() {
     setStatus("submitting");
     setErrorMessage(null);
     try {
+      const payload = {
+        name: data.name?.trim() || "",
+        phone: cleanPhone(data.phone),
+        concern: data.concern,
+        message: data.message?.trim() || "",
+        isPriority: !!data.isPriority,
+      };
+
       const response = await fetch("/api/send", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
       if (response.ok) {
         trackGAEvent("generate_lead", {
           element_id: "main_contact_form",
-          user_email: data.email,
-          user_phone: data.phone,
+          user_phone: payload.phone,
+          user_name: payload.name || "Not provided",
+          concern: payload.concern,
+          is_online: payload.isPriority,
         });
         setStatus("success");
         reset();
@@ -148,7 +167,7 @@ export function ContactForm() {
         console.error("Submission error:", errorData);
         setErrorMessage(
           errorData.error ||
-            "Server error. Please check if RESEND_API_KEY is set in Vercel settings.",
+            "Server error. Please try again or contact us directly.",
         );
         setStatus("error");
       }
@@ -197,38 +216,41 @@ export function ContactForm() {
         <span>100% Confidential & Secure Consultation</span>
       </div>
 
+      {/* 1 Name (Optional) */}
       <div className="form-group">
-        <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
+        <label
+          htmlFor="contact-name"
+          className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
           <User
             size={13}
             className="text-[var(--primary)]"
           />{" "}
-          Full Name *
+          Name (Optional)
         </label>
         <input
           id="contact-name"
           {...register("name")}
           placeholder="e.g. Rahul Sharma"
-          className={`w-full py-3 px-4 rounded-xl border ${errors.name ? "border-red-400" : "border-gray-200"} bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all text-[15px]`}
+          className="w-full py-3 px-4 rounded-xl border border-gray-200 bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all text-[15px]"
         />
-        {errors.name && (
-          <p className="text-red-500 text-[11px] mt-1 ml-1">
-            {errors.name.message}
-          </p>
-        )}
       </div>
 
+      {/* 2 Phone Number */}
       <div className="form-group">
-        <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
+        <label
+          htmlFor="contact-phone"
+          className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
           <PhoneIcon
             size={13}
             className="text-[var(--primary)]"
           />{" "}
-          Phone / WhatsApp *
+          Phone Number *
         </label>
         <input
+          id="contact-phone"
+          type="tel"
           {...register("phone")}
-          placeholder="10-digit number"
+          placeholder="10-digit number (e.g. 98765 43210)"
           className={`w-full py-3 px-4 rounded-xl border ${errors.phone ? "border-red-400" : "border-gray-200"} bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all text-[15px]`}
         />
         {errors.phone && (
@@ -238,115 +260,77 @@ export function ContactForm() {
         )}
       </div>
 
+      {/* 3 Primary concern selector */}
       <div className="form-group">
         <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
-          <Mail
-            size={11}
+          <HelpCircle
+            size={13}
             className="text-[var(--primary)]"
           />{" "}
-          Email Address *
+          Primary Concern *
         </label>
-        <input
-          {...register("email")}
-          type="email"
-          placeholder="e.g. rahul@example.com"
-          className={`w-full py-3 px-4 rounded-xl border ${errors.email ? "border-red-400" : "border-gray-200"} bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all text-[15px]`}
-        />
-        {errors.email && (
+        <div
+          className="relative"
+          ref={dropdownRef}>
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className={`w-full py-3 px-4 rounded-xl border ${errors.concern ? "border-red-400" : isOpen ? "border-[var(--primary)] ring-1 ring-[var(--primary)]" : "border-gray-200"} bg-white cursor-pointer flex items-center justify-between transition-all shadow-sm text-[15px] hover:border-[var(--primary)]/50`}>
+            <span
+              className={
+                selectedConcern ? "text-[var(--text-dark)]" : "text-gray-400"
+              }>
+              {selectedConcern
+                ? concerns.find((c) => c.value === selectedConcern)?.label
+                : "Select reason for visit"}
+            </span>
+            <ChevronDown
+              size={14}
+              className={`text-gray-400 transition-transform duration-300 ${isOpen ? "rotate-180 text-[var(--primary)]" : ""}`}
+            />
+          </button>
+
+          {isOpen && (
+            <div className="absolute top-[calc(100%+8px)] left-0 w-full bg-white border border-gray-100 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] py-2 z-[100] animate-in fade-in zoom-in-95 duration-200 max-h-[300px] overflow-y-auto">
+              {concerns.map((item) => (
+                <div
+                  key={item.value}
+                  onClick={() => {
+                    setValue("concern", item.value);
+                    trigger("concern");
+                    setIsOpen(false);
+                  }}
+                  className={`px-4 py-3 text-left cursor-pointer transition-colors ${selectedConcern === item.value ? "bg-gray-50 text-[var(--primary)] font-medium" : "text-gray-700 hover:bg-gray-50 hover:text-[var(--primary)]"}`}>
+                  <div className="text-[14px]">{item.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
+          <input
+            type="hidden"
+            {...register("concern")}
+          />
+        </div>
+        {errors.concern && (
           <p className="text-red-500 text-[11px] mt-1 ml-1">
-            {errors.email.message}
+            {errors.concern.message}
           </p>
         )}
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-        <div className="form-group sm:col-span-1">
-          <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
-            <Calendar
-              size={13}
-              className="text-[var(--primary)]"
-            />{" "}
-            Age
-          </label>
-          <input
-            {...register("age")}
-            type="number"
-            placeholder="28"
-            className={`w-full py-3 px-4 rounded-xl border ${errors.age ? "border-red-400" : "border-gray-200"} bg-white focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] outline-none transition-all shadow-sm text-[15px]`}
-          />
-          {errors.age && (
-            <p className="text-red-500 text-[11px] mt-1 ml-1">
-              {errors.age.message}
-            </p>
-          )}
-        </div>
-
-        <div className="form-group sm:col-span-2">
-          <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
-            <HelpCircle
-              size={13}
-              className="text-[var(--primary)]"
-            />{" "}
-            Primary Concern *
-          </label>
-          <div
-            className="relative"
-            ref={dropdownRef}>
-            <div
-              onClick={() => setIsOpen(!isOpen)}
-              className={`w-full py-3 px-4 rounded-xl border ${errors.concern ? "border-red-400" : isOpen ? "border-[var(--primary)] ring-1 ring-[var(--primary)]" : "border-gray-200"} bg-white cursor-pointer flex items-center justify-between transition-all shadow-sm text-[15px] hover:border-[var(--primary)]/50`}>
-              <span
-                className={
-                  selectedConcern ? "text-[var(--text-dark)]" : "text-gray-400"
-                }>
-                {selectedConcern
-                  ? concerns.find((c) => c.value === selectedConcern)?.label
-                  : "Select reason for visit"}
-              </span>
-              <ChevronDown
-                size={14}
-                className={`text-gray-400 transition-transform duration-300 ${isOpen ? "rotate-180 text-[var(--primary)]" : ""}`}
-              />
-            </div>
-
-            {isOpen && (
-              <div className="absolute top-[calc(100%+8px)] left-0 w-full bg-white border border-gray-100 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] py-2 z-[100] animate-in fade-in zoom-in-95 duration-200 max-h-[300px] overflow-y-auto">
-                {concerns.map((item) => (
-                  <div
-                    key={item.value}
-                    onClick={() => {
-                      setValue("concern", item.value);
-                      trigger("concern");
-                      setIsOpen(false);
-                    }}
-                    className={`px-4 py-3 text-left cursor-pointer transition-colors ${selectedConcern === item.value ? "bg-gray-50 text-[var(--primary)] font-medium" : "text-gray-700 hover:bg-gray-50 hover:text-[var(--primary)]"}`}>
-                    <div className="text-[14px]">{item.label}</div>
-                  </div>
-                ))}
-              </div>
-            )}
-            <input
-              type="hidden"
-              {...register("concern")}
-            />
-          </div>
-          {errors.concern && (
-            <p className="text-red-500 text-[11px] mt-1 ml-1">
-              {errors.concern.message}
-            </p>
-          )}
-        </div>
-      </div>
-
+      {/* 4 Description box (Optional) */}
       <div className="form-group">
-        <label className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
+        <label
+          htmlFor="contact-description"
+          className="flex items-center gap-2 mb-1.5 text-sm font-semibold text-[var(--text-dark)] uppercase tracking-wider opacity-80">
           <MessageSquare
             size={13}
             className="text-[var(--primary)]"
           />{" "}
-          Describe your Concerns
+          Description (Optional)
         </label>
         <textarea
+          id="contact-description"
           {...register("message")}
           placeholder="Briefly describe what you'd like to discuss (optional)"
           rows={3}
@@ -354,6 +338,7 @@ export function ContactForm() {
         />
       </div>
 
+      {/* Online Session Checkbox */}
       <div className="form-group flex items-center gap-3 py-1">
         <input
           type="checkbox"
@@ -381,14 +366,14 @@ export function ContactForm() {
         </div>
       )}
 
-      <div className="pt-4 flex justify-start">
+      <div className="pt-2 flex justify-start">
         <AlexButton
           type="submit"
           size="md"
-          className="shadow-xl"
+          className="shadow-xl w-full sm:w-auto"
           disabled={status === "submitting"}>
           {status === "submitting"
-            ? "Processing..."
+            ? "Scheduling..."
             : "Schedule My Appointment"}
         </AlexButton>
       </div>

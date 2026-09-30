@@ -40,22 +40,18 @@ export function RotatingWords({
   return (
     <>
       {/* Screen reader text for SEO and accessibility */}
-      <span className="sr-only">
-        {words.join(", ")} and more
-      </span>
+      <span className="sr-only">{words.join(", ")} and more</span>
 
       <span
         aria-hidden="true"
-        className={`inline-grid relative overflow-hidden align-bottom text-left px-1.5 py-1 -my-1 ${className}`}
-        style={{ gridTemplateAreas: '"stack"' }}
-      >
+        className={`inline-grid relative overflow-hidden align-bottom text-center px-1.5 py-1 -my-1 ${className}`}
+        style={{ gridTemplateAreas: '"stack"' }}>
         {prevIndex !== null && (
           <span
             key={`prev-${prevIndex}`}
             className="animate-word-out select-none pointer-events-none"
-            style={{ gridArea: "stack" }}
-          >
-            <span className="simmer-text italic font-bold whitespace-nowrap">
+            style={{ gridArea: "stack" }}>
+            <span className="text-[var(--primary)] italic font-bold whitespace-nowrap">
               {words[prevIndex]}
             </span>
           </span>
@@ -63,9 +59,8 @@ export function RotatingWords({
         <span
           key={`curr-${currentIndex}`}
           className={prevIndex !== null ? "animate-word-in" : ""}
-          style={{ gridArea: "stack" }}
-        >
-          <span className="simmer-text italic font-bold whitespace-nowrap">
+          style={{ gridArea: "stack" }}>
+          <span className="text-[var(--primary)] italic font-bold whitespace-nowrap">
             {words[currentIndex]}
           </span>
         </span>
