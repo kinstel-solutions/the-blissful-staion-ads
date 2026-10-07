@@ -21,14 +21,14 @@ export function MobileBottomDock() {
         onClick={() => trackGAEvent("whatsapp_click", { element_id: "mobile_dock_whatsapp" })}
         className="w-1/2 flex items-center justify-center gap-2.5 py-3.5 px-2 bg-[#F4FBF7] text-[#0d7348] border-r border-black/10 active:bg-[#e7f7ee] transition-colors text-center select-none"
         aria-label="Chat confidentially on WhatsApp">
-        <div className="w-8 h-8 rounded-full bg-[#25D366]/20 flex items-center justify-center shrink-0">
-          <MessageCircle size={17} className="text-[#128C7E] fill-current" />
+        <div className="w-9 h-9 rounded-full bg-[#25D366]/20 flex items-center justify-center shrink-0">
+          <MessageCircle size={18} className="text-[#128C7E] fill-current" />
         </div>
         <div className="text-left leading-tight min-w-0">
-          <span className="block text-[13px] font-bold text-[#0d7348] truncate">
+          <span className="block text-sm font-bold text-[#0d7348] truncate">
             Chat Privately
           </span>
-          <span className="block text-[10.5px] text-[#0d7348]/80 font-medium truncate">
+          <span className="block text-xs text-[#0d7348]/85 font-medium truncate">
             WhatsApp • 100% Safe
           </span>
         </div>
@@ -40,14 +40,14 @@ export function MobileBottomDock() {
         onClick={() => trackGAEvent("phone_call", { element_id: "mobile_dock_phone" })}
         className="w-1/2 flex items-center justify-center gap-2.5 py-3.5 px-2 bg-[var(--primary)] text-white active:bg-[var(--primary-dark)] transition-colors text-center select-none shadow-inner"
         aria-label="Speak with our clinic directly">
-        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-          <Phone size={16} className="text-white" />
+        <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+          <Phone size={17} className="text-white" />
         </div>
         <div className="text-left leading-tight min-w-0">
-          <span className="block text-[13px] font-bold text-white truncate">
+          <span className="block text-sm font-bold text-white truncate">
             Speak with Us
           </span>
-          <span className="block text-[10.5px] text-white/80 font-medium truncate">
+          <span className="block text-xs text-white/85 font-medium truncate">
             Call: 97937 43769
           </span>
         </div>

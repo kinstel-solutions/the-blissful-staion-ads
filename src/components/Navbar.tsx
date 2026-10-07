@@ -29,7 +29,7 @@ export function Navbar() {
   return (
     <>
       <nav
-        className={`flex justify-between items-center py-1 md:py-2.5 absolute top-2 left-1/2 -translate-x-1/2 w-[95%] z-[1000] max-w-[1200px] transition-all duration-400 ease-in-out px-4 md:px-8 mx-auto container ${scrolled ? "fixed !top-0 !max-w-full !w-full bg-[#faf9ef]/95 backdrop-blur-[15px] !py-2 border-b border-[rgba(0,0,0,0.06)] shadow-[0_2px_15px_rgba(0,0,0,0.03)] !rounded-none" : "bg-[#faf9ef]/80 md:bg-transparent md:backdrop-blur-none rounded-[20px]"} ${isMenuOpen ? "opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto" : "opacity-100"}`}>
+        className={`flex justify-between items-center py-1 md:py-2.5 absolute top-2 left-1/2 -translate-x-1/2 w-[95%] z-[1000] max-w-[1200px] transition-all duration-400 ease-in-out px-4 md:px-8 mx-auto container ${scrolled ? "fixed !top-0 !max-w-full !w-full bg-white/95 backdrop-blur-[15px] !py-2 border-b border-[rgba(0,0,0,0.06)] shadow-[0_2px_15px_rgba(0,0,0,0.03)] !rounded-none" : "bg-white/85 md:bg-transparent md:backdrop-blur-none rounded-[20px]"} ${isMenuOpen ? "opacity-0 pointer-events-none lg:opacity-100 lg:pointer-events-auto" : "opacity-100"}`}>
         <Link
           href="/"
           onClick={(e) => {

@@ -147,25 +147,25 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden pt-[80px] md:pt-[130px] lg:pt-[145px] pb-10 md:pb-24 bg-[#faf9ef]">
+      className="relative overflow-hidden pt-[80px] md:pt-[130px] lg:pt-[145px] pb-10 md:pb-24 bg-white">
       <div className="container mx-auto px-3.5 sm:px-6 md:px-8 max-w-[1300px]">
         {/* Top 2-Column Grid on Desktop, Natural Flow on Mobile */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 xl:gap-14 items-start mb-10 md:mb-20">
           {/* Left Column: Reassurance, Authority & Headline */}
           <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <div className="flex flex-wrap justify-center lg:justify-start gap-1.5 sm:gap-2 mb-2 sm:mb-3">
-              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] sm:text-[11px] font-bold tracking-[0.8px] sm:tracking-[1.2px] px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase font-outfit">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-1.5 sm:gap-2 mb-2.5 sm:mb-3">
+              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[11px] sm:text-xs font-bold tracking-[0.8px] sm:tracking-[1px] px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full uppercase font-outfit">
                 RCI Registered Clinical Psychologist
               </span>
-              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] sm:text-[11px] font-bold tracking-[0.8px] sm:tracking-[1.2px] px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase font-outfit">
+              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[11px] sm:text-xs font-bold tracking-[0.8px] sm:tracking-[1px] px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full uppercase font-outfit">
                 100% Confidential
               </span>
-              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] sm:text-[11px] font-bold tracking-[0.8px] sm:tracking-[1.2px] px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase font-outfit">
+              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[11px] sm:text-xs font-bold tracking-[0.8px] sm:tracking-[1px] px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full uppercase font-outfit">
                 Therapy Starting @₹799
               </span>
             </div>
 
-            <h1 className="text-[27px] sm:text-4xl lg:text-[46px] xl:text-[52px] leading-[1.15] mb-2.5 sm:mb-4 font-cormorant font-bold text-[var(--text-dark)] tracking-[0.5px]">
+            <h1 className="text-[32px] sm:text-4xl lg:text-[46px] xl:text-[52px] leading-[1.14] mb-3 sm:mb-4 font-cormorant font-bold text-[var(--text-dark)] tracking-[0.5px]">
               Expert Therapy for{" "}
               <span className="block text-[var(--primary)]">
                 <RotatingWords
@@ -179,30 +179,30 @@ export function HeroSection() {
               </span>
             </h1>
 
-            <p className="text-[13px] sm:text-base lg:text-lg text-[var(--text-light)] mb-3 sm:mb-4 max-w-[540px] leading-relaxed">
+            <p className="text-[15px] sm:text-base lg:text-lg text-[var(--text-light)] mb-3.5 sm:mb-5 max-w-[540px] leading-relaxed">
               Lucknow&apos;s highly rated clinical psychologist providing scientific, evidence-based care tailored to your unique healing journey.
             </p>
 
             {/* Seamless, unboxed proof row — zero card padding, zero clutter */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs sm:text-[13px] text-[var(--text-dark)] mb-3 sm:mb-4">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-3.5 gap-y-1.5 text-[13.5px] sm:text-sm text-[var(--text-dark)] mb-4 sm:mb-5">
               <div className="inline-flex items-center gap-1.5 font-semibold text-[var(--primary)]">
                 <div className="flex text-amber-500">
-                  <Star size={12.5} fill="currentColor" />
-                  <Star size={12.5} fill="currentColor" />
-                  <Star size={12.5} fill="currentColor" />
-                  <Star size={12.5} fill="currentColor" />
-                  <Star size={12.5} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
+                  <Star size={14} fill="currentColor" />
                 </div>
                 <span>4.7 Google Reviews</span>
               </div>
               <span className="text-black/25 text-xs hidden sm:inline" aria-hidden>•</span>
-              <div className="inline-flex items-center gap-1 text-[var(--text-light)] font-medium">
-                <MapPin size={12.5} className="text-[var(--primary)] shrink-0" />
+              <div className="inline-flex items-center gap-1.5 text-[var(--text-light)] font-medium">
+                <MapPin size={14} className="text-[var(--primary)] shrink-0" />
                 <span>Gomti Nagar Clinic</span>
               </div>
               <span className="text-black/25 text-xs hidden sm:inline" aria-hidden>•</span>
-              <div className="inline-flex items-center gap-1 text-[var(--text-light)] font-medium">
-                <Video size={12.5} className="text-[var(--primary)] shrink-0" />
+              <div className="inline-flex items-center gap-1.5 text-[var(--text-light)] font-medium">
+                <Video size={14} className="text-[var(--primary)] shrink-0" />
                 <span>Online Available</span>
               </div>
             </div>
