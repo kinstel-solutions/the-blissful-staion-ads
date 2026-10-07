@@ -17,7 +17,7 @@ export function FloatingBookingWidget() {
     <a
       href="/#booking-form"
       onClick={handleCtaClick}
-      className="fixed bottom-6 right-6 z-[2000] flex items-center justify-center w-14 h-14 bg-[var(--primary)] text-white rounded-full shadow-[0_4px_15px_rgba(33,77,62,0.3)] border border-[var(--primary-light)] transition-all duration-300 hover:scale-110 hover:shadow-[0_6px_20px_rgba(33,77,62,0.4)] active:scale-95 group cursor-pointer"
+      className="hidden md:flex fixed bottom-6 right-6 z-[2000] items-center justify-center w-14 h-14 bg-[var(--primary)] text-white rounded-full shadow-[0_4px_15px_rgba(33,77,62,0.3)] border border-[var(--primary-light)] transition-all duration-300 hover:scale-110 hover:shadow-[0_6px_20px_rgba(33,77,62,0.4)] active:scale-95 group cursor-pointer"
       aria-label="Schedule Appointment"
     >
       <HeartHandshake size={22} className="shrink-0 transition-transform group-hover:rotate-12 duration-300" />

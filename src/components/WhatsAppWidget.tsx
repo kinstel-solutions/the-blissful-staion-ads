@@ -14,7 +14,7 @@ export function WhatsAppWidget() {
       onClick={() => trackGAEvent('whatsapp_click', { element_id: 'whatsapp_floating_widget', message: message })}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 left-6 z-[2000] flex items-center justify-center w-14 h-14 bg-[#25d366] text-white rounded-full shadow-[0_4px_15px_rgba(37,211,102,0.3)] transition-all duration-300 hover:scale-110 hover:shadow-[0_6px_20px_rgba(37,211,102,0.4)] active:scale-95 group"
+      className="hidden md:flex fixed bottom-6 left-6 z-[2000] items-center justify-center w-14 h-14 bg-[#25d366] text-white rounded-full shadow-[0_4px_15px_rgba(37,211,102,0.3)] transition-all duration-300 hover:scale-110 hover:shadow-[0_6px_20px_rgba(37,211,102,0.4)] active:scale-95 group"
       aria-label="Contact us on WhatsApp"
     >
       <svg

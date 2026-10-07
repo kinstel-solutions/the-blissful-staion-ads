@@ -11,7 +11,8 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import { AlexButton } from "@/components/ui/AlexButton";
 import { RotatingWords } from "@/components/ui/RotatingWords";
-import { ChevronLeft, ChevronRight, Leaf, X, ZoomIn } from "lucide-react";
+import { ContactForm } from "@/components/ContactForm";
+import { ChevronLeft, ChevronRight, Leaf, X, ZoomIn, Star, MapPin, Video } from "lucide-react";
 
 const emptySubscribe = () => () => {};
 
@@ -146,77 +147,95 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden pt-[80px] md:pt-[190px] pb-[6vw] md:pb-[15vw] bg-[#faf9ef]">
-      <div className="container mx-auto px-6 md:px-8 max-w-[1300px]">
-        <div className="flex flex-col items-center text-center">
-          <div className="flex flex-col items-center">
-            <div className="flex flex-wrap justify-center gap-2.5 mb-4">
-              <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
+      className="relative overflow-hidden pt-[80px] md:pt-[130px] lg:pt-[145px] pb-10 md:pb-24 bg-[#faf9ef]">
+      <div className="container mx-auto px-3.5 sm:px-6 md:px-8 max-w-[1300px]">
+        {/* Top 2-Column Grid on Desktop, Natural Flow on Mobile */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 xl:gap-14 items-start mb-10 md:mb-20">
+          {/* Left Column: Reassurance, Authority & Headline */}
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-1.5 sm:gap-2 mb-2 sm:mb-3">
+              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] sm:text-[11px] font-bold tracking-[0.8px] sm:tracking-[1.2px] px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase font-outfit">
                 RCI Registered Clinical Psychologist
-              </div>
-              <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
+              </span>
+              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] sm:text-[11px] font-bold tracking-[0.8px] sm:tracking-[1.2px] px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase font-outfit">
                 100% Confidential
-              </div>
-              <div className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] font-bold tracking-[1.2px] px-3 py-1.5 rounded-full uppercase font-outfit">
+              </span>
+              <span className="inline-flex items-center bg-[#E8F5E9] text-[var(--primary)] text-[10px] sm:text-[11px] font-bold tracking-[0.8px] sm:tracking-[1.2px] px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full uppercase font-outfit">
                 Therapy Starting @₹799
-              </div>
+              </span>
             </div>
 
-            <h1 className="text-4xl text-center md:text-5xl lg:text-[64px] leading-[1.15] mb-6 font-cormorant font-bold text-[var(--text-dark)] tracking-[1px] max-w-[900px]">
-              Expert Therapy for
+            <h1 className="text-[27px] sm:text-4xl lg:text-[46px] xl:text-[52px] leading-[1.15] mb-2.5 sm:mb-4 font-cormorant font-bold text-[var(--text-dark)] tracking-[0.5px]">
+              Expert Therapy for{" "}
               <span className="block text-[var(--primary)]">
                 <RotatingWords
                   words={[
                     "Anxiety",
-                    // "Depression",
                     "Relationships",
                     "Stress & Burnout",
-                    // "ADHD & OCD",
-                    // "Career Counselling",
                     "your concerns",
                   ]}
                 />
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-[var(--text-light)] mb-8 max-w-[700px] leading-relaxed">
-              <span className="block">
-                Lucknow&apos;s Highly Rated therapist/clinical psychologist
-                providing scientific, evidence-based care tailored to your
-                unique mental health journey.{" "}
-              </span>
+            <p className="text-[13px] sm:text-base lg:text-lg text-[var(--text-light)] mb-3 sm:mb-4 max-w-[540px] leading-relaxed">
+              Lucknow&apos;s highly rated clinical psychologist providing scientific, evidence-based care tailored to your unique healing journey.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
-              <AlexButton
-                href="#booking-form"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.dispatchEvent(new CustomEvent("focus-booking-form"));
-                }}
-                size="md"
-                className="shadow-lg hover:shadow-xl">
-                Inquire Now
-              </AlexButton>
-              <AlexButton
-                href="#booking-form"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.dispatchEvent(
-                    new CustomEvent("priority-booking-click"),
-                  );
-                }}
-                size="md"
-                className="alex-button-secondary shadow-lg hover:shadow-xl">
-                Book Online Session
-              </AlexButton>
+            {/* Seamless, unboxed proof row — zero card padding, zero clutter */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1.5 text-xs sm:text-[13px] text-[var(--text-dark)] mb-3 sm:mb-4">
+              <div className="inline-flex items-center gap-1.5 font-semibold text-[var(--primary)]">
+                <div className="flex text-amber-500">
+                  <Star size={12.5} fill="currentColor" />
+                  <Star size={12.5} fill="currentColor" />
+                  <Star size={12.5} fill="currentColor" />
+                  <Star size={12.5} fill="currentColor" />
+                  <Star size={12.5} fill="currentColor" />
+                </div>
+                <span>4.7 Google Reviews</span>
+              </div>
+              <span className="text-black/25 text-xs hidden sm:inline" aria-hidden>•</span>
+              <div className="inline-flex items-center gap-1 text-[var(--text-light)] font-medium">
+                <MapPin size={12.5} className="text-[var(--primary)] shrink-0" />
+                <span>Gomti Nagar Clinic</span>
+              </div>
+              <span className="text-black/25 text-xs hidden sm:inline" aria-hidden>•</span>
+              <div className="inline-flex items-center gap-1 text-[var(--text-light)] font-medium">
+                <Video size={12.5} className="text-[var(--primary)] shrink-0" />
+                <span>Online Available</span>
+              </div>
             </div>
+
+            {/* Anchor to gallery below */}
+            <a
+              href="#clinic-tour"
+              className="hidden lg:inline-flex items-center gap-1.5 text-xs text-[var(--text-light)] hover:text-[var(--primary)] transition-colors underline underline-offset-4 mt-2">
+              <span>View photos of our clinical sanctuary below ↓</span>
+            </a>
           </div>
 
-          <div className="w-full mt-8 md:mt-20 relative group">
-            {/* Scroll Container */}
-            <div
-              ref={scrollRef}
+          {/* Right Column: The Staged Interactive Assessment & Booking Form */}
+          <div className="lg:col-span-7 w-full">
+            <div className="w-full bg-transparent lg:bg-white lg:rounded-3xl p-0 lg:p-7 xl:p-8 lg:shadow-[0_16px_45px_rgba(33,77,62,0.06)] lg:border lg:border-black/[0.06] transition-all">
+              <ContactForm />
+            </div>
+          </div>
+        </div>
+
+        {/* Clinic Photo Carousel (Directly beneath hero grid) */}
+        <div id="clinic-tour" className="w-full relative group scroll-mt-24">
+          <div className="text-center mb-4 sm:mb-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--primary)] mb-1">
+              Our Clinic Sanctuary
+            </p>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-cormorant font-medium text-[var(--text-dark)]">
+              A Safe, Peaceful Space in Gomti Nagar
+            </h2>
+          </div>
+
+          <div
+            ref={scrollRef}
               onMouseEnter={stopTimer}
               onMouseLeave={startTimer}
               onTouchStart={stopTimer}
@@ -296,7 +315,6 @@ export function HeroSection() {
             </div>
           </div>
         </div>
-      </div>
 
       {/* Lightbox / Expanded View Modal */}
       {isClient &&
