@@ -148,7 +148,25 @@ export function HeroSection() {
     <section
       id="hero"
       className="relative overflow-hidden pt-[80px] md:pt-[130px] lg:pt-[145px] pb-10 md:pb-24 bg-[#faf9ef]">
-      <div className="container mx-auto px-3.5 sm:px-6 md:px-8 max-w-[1300px]">
+      {/* Background Hero Video with Performance Protection */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/vid/hero-bg-poster.webp"
+          className="w-full h-full object-cover object-[center_25%] opacity-80 sm:opacity-85">
+          <source src="/vid/hero-bg.webm" type="video/webm" />
+          <source src="/vid/hero-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Balanced overlay: keeps the video vivid and moving while ensuring text contrast */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#faf9ef]/65 via-[#faf9ef]/25 to-[#faf9ef]/95" />
+        <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#faf9ef]/85 via-[#faf9ef]/40 to-transparent" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-3.5 sm:px-6 md:px-8 max-w-[1300px]">
         {/* Top 2-Column Grid on Desktop, Natural Flow on Mobile */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 xl:gap-14 items-start mb-10 md:mb-20">
           {/* Left Column: Reassurance, Authority & Headline */}
