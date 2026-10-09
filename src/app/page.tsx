@@ -20,6 +20,13 @@ const ServicesSection = dynamic(
     ),
   { ssr: true },
 );
+// const AboutTherapist = dynamic(
+//   () =>
+//     import("@/components/sections/AboutTherapist").then(
+//       (mod) => mod.AboutTherapist,
+//     ),
+//   { ssr: true },
+// );
 const ContactSection = dynamic(
   () =>
     import("@/components/sections/ContactSection").then(

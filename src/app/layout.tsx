@@ -5,7 +5,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { WhatsAppWidget } from "@/components/WhatsAppWidget";
 import { FloatingBookingWidget } from "@/components/FloatingBookingWidget";
-import { MobileBottomDock } from "@/components/MobileBottomDock";
 import Script from "next/script";
 import { CanonicalTag } from "@/components/CanonicalTag";
 import { PostHogProvider } from "./providers";
@@ -97,7 +96,6 @@ export default function RootLayout({
           <Footer />
           <WhatsAppWidget />
           <FloatingBookingWidget />
-          <MobileBottomDock />
         </PostHogProvider>
         <Script
           id="gtm-script"

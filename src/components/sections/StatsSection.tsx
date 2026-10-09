@@ -5,7 +5,7 @@ const stats = [
   { value: "200+", label: "Happy Clients", icon: Heart },
   { value: "1-on-1", label: "Dedicated Care", icon: ShieldCheck },
   { value: "100%", label: "Confidentiality", icon: Lock },
-  { value: "4.7/5", label: "Google Rating", icon: Star },
+  { value: "4.9/5", label: "Client Satisfaction", icon: Star },
 ];
 
 export function StatsSection() {
